@@ -1,0 +1,114 @@
+@charset "UTF-8";
+/* #### Style Sheet for matrix.jsp #### */
+
+body {
+  background-color: mistyrose;
+  background: radial-gradient(ellipse farthest-side at center, white ,mistyrose 85% ,pink);
+  font-family: "MS P明朝",serif;
+}
+
+h1 {
+    text-align: center;
+    text-shadow: thistle 2px 2px;
+    color: hotpink;
+    background-color: pink;
+    font-family: "MS P明朝",serif;
+    font-size: 24px
+}
+/* ==== div ==== */
+div#upper{
+    align-content: center;
+    width: 1000px;
+    height: 60px;
+}
+
+div#main {
+  margin-top: 40px;
+    width: 1000px;
+}
+
+div#under{
+    margin-top: 20px;
+    width: 1000px;
+}
+
+/* ==== table ==== */
+table {
+    table-layout: fixed;
+    font-size: medium;
+    font-family: "MS P明朝",serif;
+    background-color: lavenderblush;
+    border-width: 2px;
+    border-color: pink;
+    border-spacing: 5px;
+    border-radius: 10px;
+    border-style: ridge;
+}
+
+table.matrix {
+    float: left;
+    margin-left: 60px;
+    text-align: center;
+    width: 400px;
+    height: 400px;
+    border-collapse: separate;
+}
+
+/*
+thead {
+    background-color: lavender;
+}
+
+.X0 {
+    background-color: lavender;
+}
+*/
+
+table.controler {
+    margin-right: 60px;
+    width: 400px;
+    height: 400px;
+    text-align: center;
+    text-indent: 1em;
+}
+
+th#userInfo {
+    text-align: left;
+    text-indent: 1em;
+    color: cornflowerblue;
+    vertical-align: top;
+}
+
+table.stone{
+    float: left;
+    margin-left: 60px;
+    margin-bottom: 20px;
+    width: 400px;
+    height: 100px;
+    border-collapse: separate;
+}
+
+table.message{
+    margin-right: 60px;
+    margin-bottom: 20px;
+    width: 400px;
+    height: 100px;
+
+    text-align: left;
+    text-indent: 1em;
+}
+
+td#message{
+     vertical-align: top;
+}
+
+
+/* ==== Parts Decoration ==== */
+
+buttan {
+    size: landscape;
+    text-align: center;
+    font-family:  "MS P明朝",serif;
+    font-size: medium;
+}
+
