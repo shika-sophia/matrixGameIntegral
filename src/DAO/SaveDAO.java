@@ -1,8 +1,5 @@
 package DAO;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -23,7 +20,7 @@ public class SaveDAO {
       conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS);
 
       //---- SQL ----
-      String sql = "insert into matrix (  puzzleId = ?";
+      String sql = "insert into matrix (puzzleId,  = ?";
 
           //SQL文を送る
           PreparedStatement pStmt = conn.prepareStatement(sql);

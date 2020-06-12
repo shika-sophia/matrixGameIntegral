@@ -1,8 +1,10 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -60,6 +62,9 @@ public class SaveServlet extends HttpServlet {
       HttpSession session = request.getSession();
       User user = (User) session.getAttribute("user");
 
+      ServletContext application = request.getServletContext();
+      List<Integer> colorDB = application.setAttribute(name, object);
+
       String controle = (String) session.getAttribute("controle");
 
       String saveDateTime = "";
@@ -88,7 +93,7 @@ public class SaveServlet extends HttpServlet {
       int puzzleId = user.getPuzzleId();
       int point = user.getPoint();
 
-      boolean isSave = SaveDAO.saveGame(puzzleId, point, saveDateTime);
+      boolean isSave = SaveDAO.saveGame(puzzleId, point, colorDB, saveDateTime);
 
       if (isSave) {
 
