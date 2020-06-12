@@ -3,7 +3,8 @@ package DAO;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
+
+import com.mysql.cj.x.protobuf.MysqlxDatatypes.Scalar.String;
 
 public class RegisterDAO {
 
@@ -11,6 +12,33 @@ public class RegisterDAO {
 	private final String DB_USER = "root";
 	private final String DB_PASS = "root";
 
+	public rs selectRegister(User user) {
+
+		try(Connection conn = DriverManager.getConnection(JDBC_URL,DB_USER,DB_PASS)){
+
+			//SELECT文の準備
+			String sql = "SELECT accountID FROM user WHERE accountID = ?";
+
+			//SQL文を送る
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			//?に情報をセットする
+			pStmt.setString(1,user.getAccountID());
+
+			//SQL文を実行して結果を取得する
+			ResultSet rs = pStmt.executeQuery();
+
+			return rs;
+
+		}
+	}//selectRegister
+
+	public rs1 (User user) {
+
+
+	}
+	/*
+	SELECTで確認した後でINSERT
 	public boolean insert(User user) {
 
 		Connection conn = null;
@@ -19,7 +47,7 @@ public class RegisterDAO {
 			conn =DriverManager.getConnection(JDBC_URL,DB_USER,DB_PASS);
 
 			//SQL文の準備
-			String sql = "INSERT INTO ACCOUNT(puzzleID,name,accountID,pass,point) VALUES(?,?,?,?,?)";
+			String sql = "";
 
 			//SQL文を送る
 			PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -52,6 +80,7 @@ public class RegisterDAO {
 		return true;
 
 	}//insert()
+*/
 
 
 }
