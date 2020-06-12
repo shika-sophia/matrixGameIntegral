@@ -23,7 +23,7 @@ public class LoadDAO {
             conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS);
 
             //セレクト文の準備
-            String sql = "select color from matrix where puzzleID = ?";
+            String sql = "select color from matrix where puzzleId = ?";
 
             //SQL文を送る
             PreparedStatement pStmt = conn.prepareStatement(sql);

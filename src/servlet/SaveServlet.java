@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import DAO.SaveDAO;
 import model.SaveDateTime;
 import model.User;
 
@@ -87,7 +88,7 @@ public class SaveServlet extends HttpServlet {
       int puzzleId = user.getPuzzleId();
       int point = user.getPoint();
 
-      boolean isSave = SaveDAO(puzzleId, point, saveDateTime);
+      boolean isSave = SaveDAO.saveGame(puzzleId, point, saveDateTime);
 
       if (isSave) {
 
