@@ -11,10 +11,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import DAO.ColorDAO;
 import model.ColorLogic;
 import model.MatrixBeans;
+import model.SaveDateTime;
+import model.User;
 
 
 @WebServlet("/ColorServlet")
@@ -23,32 +25,61 @@ public class ColorServlet extends HttpServlet {
     ColorLogic colorLogic = new ColorLogic();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //request.setCharacterEncoding("UTF-8");
-        //User user = (User) session.getAttribute("user");
+
+        // ###### Test Parts ######
+        User user = new User();
+        user.setName("shika");
+        user.setPass("shika");
+        user.setAccountId("shika");
+        user.setPoint(10000);
+        user.setPuzzleId(99);
+
+        HttpSession session = request.getSession();
+        session.setAttribute("user", user);
+
+        boolean existData = false;
+
+        // ###### End of Test Parts ######
+
+        // ---- get parameters ----
+        request.setCharacterEncoding("UTF-8");
+        user = (User) session.getAttribute("user"); //実装時 文頭にUserを追加
 
         int select = 0;
+        int puzzleId = user.getPuzzleId();
+        //実装時追加　boolean existData = request.getParameter("existData");
 
-        //String puzzleId = user.getPuzzleId();
-        //boolean existData = request.getParameter("existData");
-
-        //if (existData) {
-        //    LoadDAO.loadData(puzzleId);
-
-        //} else {
-        //    NewGameDAO.newGameData(puzzleId);
-
+        List<Integer> colorDB = new ArrayList<>(30);
         List<String> color = new ArrayList<>(30);
 
-        ColorDAO colorDao = new ColorDAO();           //この文は いずれ廃止
-        List<Integer> colorDB = colorDao.firstColor();//この文は いずれ廃止
+        //if (existData) {
+        //    LoadDAO loadDao = new LoadDAO();
+        //   colorDB = loadDao.loadData(puzzleId);
+
+        //} else {
+        //    NewGameDAO newGameDao = new NewGameDAO();
+        //    colorDB = newGameDao.newGameData(puzzleId);
 
         //} //else <NewGame>
 
+        //---- 初期colorDBを生成 ----
+        for (int i = 0; i <= 25; i++) {
+            colorDB.add(0);
+        }//for
+
         color = colorLogic.paintColor(select, colorDB);
 
-        //
+        SaveDateTime sdt = new SaveDateTime();
+        String saveDateTime = sdt.saveDateTime();
+
+        MatrixBeans matrixDB = new MatrixBeans();
+        matrixDB.setColorDB(colorDB);
+        matrixDB.setPuzzleId(puzzleId);
+        matrixDB.setSaveDateTime(saveDateTime);
+
         //HttpSession session = request.getSession();
         //session.setAttribute("user", user);
+        session.setAttribute("matrixDB", matrixDB);
 
         String message = "";
         request.setAttribute("message", message);
@@ -66,7 +97,9 @@ public class ColorServlet extends HttpServlet {
         //---- get select ----
         request.setCharacterEncoding("UTF-8");
         int select = Integer.parseInt(request.getParameter("select"));
-        MatrixBeans matrixDB = (MatrixBeans) request.getAttribute("matrixDB");
+
+        HttpSession session = request.getSession();
+        MatrixBeans matrixDB = (MatrixBeans) session.getAttribute("matrixDB");
 
         //---- call method ----
         List<Integer> colorDB = matrixDB.getColorDB();
@@ -91,3 +124,6 @@ public class ColorServlet extends HttpServlet {
     }//doPost
 
 }//class
+
+
+
