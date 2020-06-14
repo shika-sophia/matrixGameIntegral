@@ -1,5 +1,5 @@
 /**
-* @title matrixGame/ model /class MatrixBeans/ MatrixBean()
+* @title matrixGame/ model /class MatrixBeans/ MatrixBeans()
 * @author Shika
 * @date first:2020-05-30 /last:2020-06-14 9:00
 * @see servlet:ColorServlet
