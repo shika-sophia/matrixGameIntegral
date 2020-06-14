@@ -1,41 +1,38 @@
 /**
-* @title matrixGame/ model /class Color/ setColor()
+* @title matrixGame/ model /class MatrixBeans/ MatrixBean()
 * @author Shika
-* @date first:2020-05-30 /last:2020-06-03 22:00
+* @date first:2020-05-30 /last:2020-06-14 9:00
 * @see servlet:ColorServlet
 * @see view: matrix.jsp
 *
-* @class make color ArrayList for cell-color change.
-* @class 色変換のためのリストを生成するクラス
-* @parm color: ArrayList<String> 色名を25個 設定するリスト
-* @parm colorDB: 既存の色を保存しているＤＢ、ここでは定数
-* @parm select: int インプットされた色変換するセル番号
-* @palm onOff: colorDBにselect番で保存してる値
+* @class javaBeans for coping matrix_tb in puzzle_db
+* @class DBのmatrixテーブルの内容を保存し、次々に変わる色データを保存
+* @parm colorDB: List<Integer>/ 既存の色を保存しているＤＢ、ここでは定数
+* @parm puzzleId: int/ 登録時に自動生成されるId、matrix_tbのprimary key
+* @palm saveDateTime: String/ save日時を保存
 */
 
 package model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 //====== constracter Beans for stock colorDB/ colorDBを保持するBeans====
 public class MatrixBeans implements Serializable {
   private List<Integer> colorDB;
-  private String puzzleId;
+  private int puzzleId;
   private String saveDateTime;
 
   public MatrixBeans() {}
 
   public MatrixBeans(List<Integer> colorDB) {
-	  this.colorDB = colorDB;
+      this.colorDB = colorDB;
   }
 
-  public MatrixBeans(List<Integer> colorDB, String puzzleId, String saveDateTime) {
+  public MatrixBeans(List<Integer> colorDB, int puzzleId, String saveDateTime) {
       this.colorDB = colorDB;
       this.puzzleId = puzzleId;
       this.saveDateTime = saveDateTime;
-
   }
 
   public List<Integer> getColorDB() {
@@ -46,69 +43,20 @@ public class MatrixBeans implements Serializable {
     this.colorDB = colorDB;
   }
 
-  public String getPuzzleId() {
-	return puzzleId;
+  public int getPuzzleId() {
+    return puzzleId;
   }
 
-  public void setPuzzleID(String puzzleId) {
-	this.puzzleId = puzzleId;
+  public void setPuzzleId(int puzzleId) {
+    this.puzzleId = puzzleId;
   }
 
   public String getSaveDateTime() {
-	return saveDateTime;
+    return saveDateTime;
   }
 
   public void setSaveDateTime(String saveDateTime) {
-	this.saveDateTime = saveDateTime;
+    this.saveDateTime = saveDateTime;
   }
-
-//以下、ColorLogicクラスとして分離予定
-//====== putColor() / colorDBから色指定をset ======
-  public List<String> putColor(int select, List<Integer> colorDB){
-    //---- Parameter Definition / 変数の定義 ----
-    List<String> color = new ArrayList<>(30);
-    color.add(0,"none"); //マス番とリスト番号を合わせるためのダミー
-
-    int onOff = colorDB.get(select);
-
-    String onColor = "cornflowerblue";
-    String offColor = "lavenderblush";
-
-    for (int i = 1; i < colorDB.size(); i++) { //ダミーがあるので 1から
-        //set colorDB to List "color"
-        if (colorDB.get(i) == 0) {
-            color.add(i , offColor);
-
-        } else if (colorDB.get(i) == 1) {
-            color.add(i , onColor);
-        }
-    }//for
-
-    //set select
-    if (onOff == 0) {
-        color.set(select, onColor);
-
-    } else if (onOff == 1) {
-        color.set(select, offColor);
-    }
-
-    //change onOff
-    if (onOff == 0) {
-        colorDB.set(select, 1);
-
-    } else if (onOff == 1) {
-        colorDB.set(select, 0);
-    }
-
-    setColorDB(colorDB);
-
-    //---- Test Parameter ----
-    //System.out.println(select);
-    //System.out.println(onOff);
-    //System.out.println(color);
-    //System.out.println(colorDB);
-
-  return color;
-  }//putColor() or main()
 
 }//class
