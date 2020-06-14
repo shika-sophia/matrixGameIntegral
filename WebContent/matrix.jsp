@@ -21,10 +21,8 @@
 <% List<String> color = (List<String>) application.getAttribute("color");%>
 
 <% String message = (String) request.getAttribute("message"); %>
+<% User user = (User) session.getAttribute("user"); %>
 
-<!--
-<% //User user = (User) session.getAttribute("user"); %>
--->
 
 <!DOCTYPE html>
 <html>
@@ -32,7 +30,7 @@
 <meta charset="UTF-8">
 <!--
   <script type="text/javascript">
-  window.open("http://localhost:8080/matrixGame/ColorServlet","Matrix Game","width=1000px,heigt=800px");
+  window.open("http://localhost:8080/matrixGameIntegral/ColorServlet","Matrix Game","width=1000px,heigt=800px");
   </script>
  -->
 <title>matrixGame View</title>
@@ -51,7 +49,7 @@
 <!-- Main Section -->
 <div id="main" align="center">
 <!-- Table 5×5 Matrix Table -->
-<form id="select" action="/matrixGame/ColorServlet" method="post">
+<form id="select" action="/matrixGameIntegral/ColorServlet" method="post">
 <table class="matrix" border="1">
 
 <colgroup>
@@ -128,7 +126,7 @@
 <!-- Controler Table -->
 
 <table class="controler" border="0">
-<form action="/matrixGame/ControlerServlet" method="post">
+<form action="/matrixGameIntegral/ControlerServlet" method="post">
 <tr>
 <th colspan="5" id="userInfo" >
   <p>User Name : <%= user.getName() %></p>
@@ -161,7 +159,7 @@
 <tr><td colspan="5">　</td></tr>
 <tr>
 <td colspan="5">
-  <form action="/matrixGame/SaveServlet" method="get">
+  <form action="/matrixGameIntegral/SaveServlet" method="get">
     <input type="submit" name="controle" value="Reset">　<input type="submit" name="contorole" value="Save">　<input type="submit" name="controle" value="Logout"></p>
   </form>
 </td></tr>
@@ -182,7 +180,7 @@
 <table class="message" border="0">
 <tr><td id="message">
 <p style="color: hotpink;"><b><i>＊ Message ＊</i></b></p>
-<form action="/matrixGame/SaveServlet" method="post">
+<form action="/matrixGameIntegral/SaveServlet" method="post">
   <p><%= message %></p>
 
 <% if (message != null) {%>
