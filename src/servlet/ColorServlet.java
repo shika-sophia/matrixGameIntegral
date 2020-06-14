@@ -67,6 +67,19 @@ public class ColorServlet extends HttpServlet {
             colorDB.add(0);
         }//for
 
+        //---- 初期stoneAreaを仮に定数生成 ----
+        int[] stoneAreaDB = {9,0,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+        List<String> stoneArea = new ArrayList<>(30);
+        stoneArea.add(0, "none");
+
+        for (int i = 1; i <= 25; i++) {
+            if (stoneAreaDB[i] == 1) {
+                stoneArea.add("hotpink");
+            } else if (stoneAreaDB[i] == 0) {
+                stoneArea.add("mistyrose");
+            }
+        }//for
+
         color = colorLogic.paintColor(select, colorDB);
 
         SaveDateTime sdt = new SaveDateTime();
@@ -86,6 +99,7 @@ public class ColorServlet extends HttpServlet {
 
         ServletContext application = request.getServletContext();
         application.setAttribute("color", color);
+        application.setAttribute("stoneArea", stoneArea);
 
         String path = "/matrix.jsp";
         RequestDispatcher dis = request.getRequestDispatcher(path);
