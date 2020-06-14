@@ -13,7 +13,7 @@ public class LoadDAO {
     private final String DB_USER = "root";
     private final String DB_PASS = "root";
 
-    public List<Integer> loadData(String puzzleId) {
+    public List<Integer> loadData(int puzzleId) {
 
         Connection conn = null;
         List<Integer> colorDB = new ArrayList<>(30);
@@ -28,7 +28,7 @@ public class LoadDAO {
             //SQL文を送る
             PreparedStatement pStmt = conn.prepareStatement(sql);
 
-            pStmt.setString(1, puzzleId);
+            pStmt.setInt(1, puzzleId);
 
             //SQL文を実行し結果を取得
             ResultSet rs = pStmt.executeQuery();
@@ -47,6 +47,7 @@ public class LoadDAO {
         } finally {
             try {
                 conn.close();
+
             } catch (SQLException e) {
                 e.printStackTrace();
                 return null;
