@@ -4,8 +4,9 @@
 <%@ page import="model.User"%>
 <%-- セッションスコープのインスタンスを取得 --%>
 <%
-	User user = (User) session.getAttribute("User");
+	User user = (User) session.getAttribute("user");
 %>
+
 <!DOCTYPE html>
 <html>
 <head>

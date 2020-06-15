@@ -4,7 +4,7 @@
 <%@ page import="model.User"%>
 <%-- セッションスコープのインスタンスを取得 --%>
 <%
-	User loginUser = (User) session.getAttribute("loginUser");
+	User user = (User) session.getAttribute("user");
 %>
 <!DOCTYPE html>
 <html>
@@ -18,29 +18,29 @@
 <main>
 	<!-- ログイン成功した場合の出力 -->
 	<%
-		if (loginUser != null) {
+		if (user != null) {
 	%>
 	<p>ログイン成功</p>
-	<p>ようこそ<%= loginUser.getName() %>さん</p>
-	<p><%= loginUser.getPass() %></p>
-	<p><%= loginUser.getAccountId() %></p>
+	<p>ようこそ<%= user.getName() %>さん</p>
+	<p><%= user.getPass() %></p>
+	<p><%= user.getAccountId() %></p>
 	<p>
-		<a href="/matrixGamemkm/StartServlet">ゲーム選択画面へ</a>
+		<a href="/matrixGameIntegral/StartServlet">ゲーム選択画面へ</a>
 	</p>
 	<% } else { %>
 	<!-- ログイン失敗した場合の出力 -->
 	<p>ログイン失敗</p>
 	<p>
-		<a href="/index.jsp">トップへ戻る</a>
+		<a href="/matrixGameIntegral/Register">本登録する</a>
 	</p>
 	<% } %>
 
 	<!-- ログアウト処理 -->
 	<p>
-		<a href="/matrixGamemkm/Logout">ログアウト</a>
+		<a href="/matrixGameIntegral/Logout">ログアウト</a>
 	</p>
 	<p>
-		<a href="/matrixGamemkm">トップへ戻る</a>
+		<a href="/index.jsp">トップへ戻る</a>
 </main>
 </body>
 </html>

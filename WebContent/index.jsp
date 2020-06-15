@@ -8,14 +8,14 @@
 </head>
 <body>
 <main>
-	<form action="/matrixGamemkm/loginServlet" method="post">
+	<form action="/matrixGameIntegral/LoginServlet" method="post">
 		<p>ユーザー名：<input type="text" name="name"></p>
 		<p>パスワード：<input type="password" name="pass"></p>
 		<p>アカウントID:<input type="text" name="accountId"></p>
 		<p><input type="submit" value="ログイン"></p>
 	</form>
 
-	<p><a href="/matrixGamemkm/RegisterServlet">新規登録はこちら</a></p>
+	<p><a href="/matrixGameIntegral/RegisterServlet">新規登録はこちら</a></p>
 </main>
 
 </body>
