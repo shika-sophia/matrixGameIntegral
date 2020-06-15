@@ -2,7 +2,7 @@ package model;
 
 import DAO.LoginDAO;
 
-/* ログイン処理 パスワードの判定をするクラス */
+/* ログイン処理  */
 public class LoginLogic {
 
 	//パスワードの判定をするメソッド
@@ -11,18 +11,10 @@ public class LoginLogic {
 		//LoginDAOのインスタンス化
 		LoginDAO dao = new LoginDAO();
 
-		User user = dao.findByLogin(user);
+		boolean existRegister = dao.findByLogin(user);
 
-		return user != null;
+		return existRegister;
 
-		//パスワードがあっていた場合
-		if(user.getPass().equals("1234")) {
-			return true;
-		}
+	}//execute()
 
-		//パスワードが間違っていた場合
-		return false;
-
-	}
-
-}
+}//class
