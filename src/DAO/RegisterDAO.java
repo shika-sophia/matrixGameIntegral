@@ -3,43 +3,60 @@ package DAO;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-import com.mysql.cj.x.protobuf.MysqlxDatatypes.Scalar.String;
+import model.User;
+
 
 public class RegisterDAO {
 
-	private final String JDBC_URL = "jdbc:mysql://localhost:3306/DOCOTSUBU?characterEncoding=utf-8&serverTimezone=JST";
+	private final String JDBC_URL = "jdbc:mysql://localhost:3306/puzzle?characterEncoding=utf-8&serverTimezone=JST";
 	private final String DB_USER = "root";
 	private final String DB_PASS = "root";
 
-	public rs selectRegister(User user) {
+	public List<String> selectRegister() {
+		Connection conn = null;
+		List<String> accountDB = new ArrayList<>();
 
-		try(Connection conn = DriverManager.getConnection(JDBC_URL,DB_USER,DB_PASS)){
+		try{
+			conn = DriverManager.getConnection(JDBC_URL,DB_USER,DB_PASS);
 
 			//SELECT文の準備
-			String sql = "SELECT accountID FROM user WHERE accountID = ?";
+			String sql = "SELECT accountId FROM user";
 
 			//SQL文を送る
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
-			//?に情報をセットする
-			pStmt.setString(1,user.getAccountID());
-
 			//SQL文を実行して結果を取得する
 			ResultSet rs = pStmt.executeQuery();
 
-			return rs;
+			while(rs.next()) {
+			    accountDB.add(rs.getString("accountId"));
+			}
 
-		}
+		} catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+
+        } finally {
+            try {
+                conn.close();
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }//finally
+
+        return accountDB;
+
 	}//selectRegister
 
-	public rs1 (User user) {
 
-
-	}
-	/*
-	SELECTで確認した後でINSERT
-	public boolean insert(User user) {
+	public boolean insertRegister(User user) {
 
 		Connection conn = null;
 
@@ -47,7 +64,7 @@ public class RegisterDAO {
 			conn =DriverManager.getConnection(JDBC_URL,DB_USER,DB_PASS);
 
 			//SQL文の準備
-			String sql = "";
+			String sql = "insert into user (puzzleId, name, accountId, pass, point) values(?,?,?,?,?)";
 
 			//SQL文を送る
 			PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -79,8 +96,5 @@ public class RegisterDAO {
 
 		return true;
 
-	}//insert()
-*/
-
-
-}
+	}//insertRegister()
+}//class

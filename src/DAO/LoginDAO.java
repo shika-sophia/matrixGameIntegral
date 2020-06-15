@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import model.User;
+
 public class LoginDAO {
 
 	//データベース接続に使用する情報
@@ -13,10 +15,8 @@ public class LoginDAO {
     private final String DB_USER = "root";
     private final String DB_PASS = "root";
 
-    public register findByLogin(User user) {
-
-    	Register register = null;
-
+  public boolean findByLogin(User user) {
+        boolean existRegister = false;
     	Connection conn = null;
 
     //データベースへ接続
@@ -25,7 +25,7 @@ public class LoginDAO {
 		conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS);
 
 		//セレクト文の準備
-		String sql = "SELECT puzzleID,name,accountID,pass,point FROM user WHERE NAME=? AND PASS=?";
+		String sql = "SELECT puzzleId,name,accountId,pass,point FROM user WHERE NAME=? AND PASS=?";
 
 		//SQL文を送る
 		PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -38,32 +38,32 @@ public class LoginDAO {
 		ResultSet rs = pStmt.executeQuery();
 
 		//セレクト文の結果を取得
-		if (rs.next()) {
-			int puzzleID = rs.getInt("puzzleID");
-			String name = rs.getString("name");
-			String accountID = rs.getString("accountID");
-			String pass = rs.getString("pass");
+		while (rs.next()) {
+			int puzzleId = rs.getInt("puzzleId");
 			int point = rs.getInt("point");
 
-			register = new Register(puzzleID,name,accountID,pass,point);
+			user.setPuzzleId(puzzleId);
+            user.setPoint(point);
 
-		}
+            existRegister = true;
+
+		}//while
 
 	} catch (SQLException e) {
 		e.printStackTrace();
-		return null;
+		return false;
 
 	} finally {
 		try {
 			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return null;
+			return false;
 		}
 	}
 
-	return register;
+	return existRegister;
 
-}//findByLogin()
+  }//findByLogin()
 
-}
+}//class
