@@ -47,4 +47,33 @@ public class ColorLogic {
 
       return color;
   }//paintColor()
+
+
+  public List<String> stoneSelectPaint(String stoneSelect) {
+	List<String> stoneSelectColor = new ArrayList<>();
+	stoneSelectColor.add("none");
+    stoneSelectColor.add("none");
+    stoneSelectColor.add("none");
+    stoneSelectColor.add("none");
+
+    if (stoneSelect.equals("tri")) {
+    	stoneSelectColor.set(1,"hotpink");
+    	stoneSelectColor.set(2,"lavenderblush");
+    	stoneSelectColor.set(3,"lavenderblush");
+
+    } else if (stoneSelect.equals("twice")) {
+    	stoneSelectColor.set(1,"lavenderblush");
+    	stoneSelectColor.set(2,"hotpink");
+    	stoneSelectColor.set(3,"lavenderblush");
+
+    } else if (stoneSelect.equals("mono")) {
+    	stoneSelectColor.set(1,"lavenderblush");
+    	stoneSelectColor.set(2,"lavenderblush");
+    	stoneSelectColor.set(3,"hotpink");
+
+    }
+
+	return stoneSelectColor;
+
+  }//stoneSelectPaint()
 }//class
