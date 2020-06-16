@@ -80,6 +80,12 @@ public class ColorServlet extends HttpServlet {
             }
         }//for
 
+        String stoneSelect = "tri";
+
+        List<String> stoneSelectColor = colorLogic.stoneSelectPaint(stoneSelect);
+
+
+
         color = colorLogic.paintColor(select, colorDB);
 
         SaveDateTime sdt = new SaveDateTime();
@@ -100,14 +106,14 @@ public class ColorServlet extends HttpServlet {
         ServletContext application = request.getServletContext();
         application.setAttribute("color", color);
         application.setAttribute("stoneArea", stoneArea);
+        application.setAttribute("stoneSelectColor", stoneSelectColor);
 
         String path = "/matrix.jsp";
         RequestDispatcher dis = request.getRequestDispatcher(path);
         dis.forward(request, response);
     }//doGet
 
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //---- get select ----
         request.setCharacterEncoding("UTF-8");
         int select = Integer.parseInt(request.getParameter("select"));
