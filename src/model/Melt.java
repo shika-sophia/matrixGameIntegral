@@ -88,7 +88,7 @@ public class Melt {
 
 		for (String flag : meltFlag) {
 
-			if(flag.equals("Y1") || flag.equals("Y2") || flag.equals("Y3") || flag.equals("Y4") || flag.equals("Y5")) {
+			if(flag.equals("X1")) {
 
 				colorDB.set(1,0);
 				colorDB.set(6,0);
@@ -97,7 +97,7 @@ public class Melt {
 				colorDB.set(21,0);
 			}
 
-			if(flag.equals("Y1") || flag.equals("Y2") || flag.equals("Y3") || flag.equals("Y4") || flag.equals("Y5")) {
+			if(flag.equals("X2")) {
 
 				colorDB.set(2,0);
 				colorDB.set(7,0);
@@ -106,7 +106,7 @@ public class Melt {
 				colorDB.set(22,0);
 			}
 
-			if(flag.equals("Y1") || flag.equals("Y2") || flag.equals("Y3") || flag.equals("Y4") || flag.equals("Y5")) {
+			if(flag.equals("X3")) {
 
 				colorDB.set(3,0);
 				colorDB.set(8,0);
@@ -115,7 +115,7 @@ public class Melt {
 				colorDB.set(23,0);
 			}
 
-			if(flag.equals("Y1") || flag.equals("Y2") || flag.equals("Y3") || flag.equals("Y4") || flag.equals("Y5")) {
+			if(flag.equals("X4")) {
 
 				colorDB.set(4,0);
 				colorDB.set(9,0);
@@ -124,7 +124,7 @@ public class Melt {
 				colorDB.set(24,0);
 			}
 
-			if(flag.equals("Y1") || flag.equals("Y2") || flag.equals("Y3") || flag.equals("Y4") || flag.equals("Y5")) {
+			if(flag.equals("X5")) {
 
 				colorDB.set(5,0);
 				colorDB.set(10,0);
@@ -133,7 +133,7 @@ public class Melt {
 				colorDB.set(25,0);
 			}
 
-			if(flag.equals("X1") || flag.equals("X2") || flag.equals("X3") || flag.equals("X4") || flag.equals("X5")) {
+			if(flag.equals("Y1")) {
 
 				colorDB.set(1,0);
 				colorDB.set(2,0);
@@ -142,7 +142,7 @@ public class Melt {
 				colorDB.set(5,0);
 			}
 
-			if(flag.equals("X1") || flag.equals("X2") || flag.equals("X3") || flag.equals("X4") || flag.equals("X5")) {
+			if(flag.equals("Y2")) {
 
 				colorDB.set(6,0);
 				colorDB.set(7,0);
@@ -151,7 +151,7 @@ public class Melt {
 				colorDB.set(10,0);
 			}
 
-			if(flag.equals("X1") || flag.equals("X2") || flag.equals("X3") || flag.equals("X4") || flag.equals("X5")) {
+			if(flag.equals("Y3")) {
 
 				colorDB.set(11,0);
 				colorDB.set(12,0);
@@ -160,7 +160,7 @@ public class Melt {
 				colorDB.set(15,0);
 			}
 
-			if(flag.equals("X1") || flag.equals("X2") || flag.equals("X3") || flag.equals("X4") || flag.equals("X5")) {
+			if(flag.equals("Y4")) {
 
 				colorDB.set(16,0);
 				colorDB.set(17,0);
@@ -169,7 +169,7 @@ public class Melt {
 				colorDB.set(20,0);
 			}
 
-			if(flag.equals("X1") || flag.equals("X2") || flag.equals("X3") || flag.equals("X4") || flag.equals("X5")) {
+			if(flag.equals("Y5")) {
 
 				colorDB.set(21,0);
 				colorDB.set(22,0);
@@ -192,6 +192,6 @@ public class Melt {
 }//class
 
 /*
-Before[9, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+Before[9, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0]
 After[9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 */
