@@ -11,14 +11,98 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import model.ColorLogic;
-import model.MatrixBeans;
-import model.SaveDateTime;
-import model.User;
+import model.StoneBeans;//beans
+import model.StoneBoolean;
+import model.StoneLogic;//model
+import model.StoneputColor;
+
+@WebServlet("/MkmSampleServlet")
+public class MkmSampleServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException,
+	IOException {
+		request.setCharacterEncoding("UTF-8");
+
+		List<Integer> stoneAreaDB = new ArrayList<>(30);
+	    List<String> stoneArea = new ArrayList<>(30);
+
+	}//doget
+
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException,
+	IOException {//
+		//文字コード設定
+		request.setCharacterEncoding("UTF-8");
+		//selectの取得
+		int select=Integer.parseInt(request.getParameter("select")) ;
+		//stoneSelectの取得
+		String stoneSelect=request.getParameter("stoneSelect");
+		//仮の値を指定
+		 stoneSelect="tri";
+		 select=7;
+	    List<Integer> stoneAreaDB = new ArrayList<>(30);
+	    List<String> stoneArea = new ArrayList<>(30);
+	    //配列の０番目をダミーに
+	    stoneArea.add(0, "none");
+	    stoneAreaDB.add(0, 9);
+		StoneBeans stb=new StoneBeans(stoneSelect,stoneAreaDB,stoneArea,select);
+
+		//StoneBooleanの呼び出し
+		StoneBoolean stoneboolean=new StoneBoolean();
+		//StoneBooleanを起動
+		boolean hannbetu=stoneboolean.execute(stb);
+		//hannbetuしてできないなら分岐する
+		if(hannbetu=false) {
+			//matrix.jspへフォワード
+			String path = "/matrix.jsp";
+			RequestDispatcher dis = request.getRequestDispatcher(path);
+			dis.forward(request, response);
+		}
+		//StoneLogicの呼び出し,stoneLogic作成
+		StoneLogic stoneLogic=new StoneLogic();
+		//StoneLogicを起動、stoneAreaDB
+		stoneAreaDB=stoneLogic.execute(stb);
+		//putColorStoneの呼び出し,pcst作成
+		StoneputColor pcst= new StoneputColor();
+		//起動、stoneArea
+		stoneArea=pcst.execute(stb);
+
+		//stoneAreaDBをアプリケーションスコープに取得
+		ServletContext application= request.getServletContext();
+		//stoneArea,stoneAreaDBをアプリケーションスコープに保存
+		application.setAttribute("stoneArea",stoneArea);
+		application.setAttribute("stoneAreaDB",stoneAreaDB);
+
+		//matrix.jspへフォワード
+		String path = "/matrix.jsp";
+		RequestDispatcher dis = request.getRequestDispatcher(path);
+		dis.forward(request, response);
 
 
+
+
+
+
+
+
+
+
+
+		/*if(stoneSelect=="tri") {
+
+		}else if(stoneSelect=="twice") {
+
+		}else if(stoneSelect=="mono") {
+
+		}//if*/
+
+	}//dopost
+
+}//MkmSampleServlet
+/*
 @WebServlet("/ColorServlet")
 public class ColorServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -26,28 +110,13 @@ public class ColorServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        // ###### Test Parts ######
-        User user = new User();
-        user.setName("shika");
-        user.setPass("shika");
-        user.setAccountId("shika");
-        user.setPoint(10000);
-        user.setPuzzleId(99);
 
-        HttpSession session = request.getSession();
-        session.setAttribute("user", user);
 
-        boolean existData = false;
 
-        // ###### End of Test Parts ######
 
-        // ---- get parameters ----
-        request.setCharacterEncoding("UTF-8");
-        user = (User) session.getAttribute("user"); //実装時 文頭にUserを追加
 
-        int select = 0;
-        int puzzleId = user.getPuzzleId();
-        //実装時追加　boolean existData = request.getParameter("existData");
+
+
 
         List<Integer> colorDB = new ArrayList<>(30);
         List<String> color = new ArrayList<>(30);
@@ -80,12 +149,6 @@ public class ColorServlet extends HttpServlet {
             }
         }//for
 
-        String stoneSelect = "tri";
-
-        List<String> stoneSelectColor = colorLogic.stoneSelectPaint(stoneSelect);
-
-
-
         color = colorLogic.paintColor(select, colorDB);
 
         SaveDateTime sdt = new SaveDateTime();
@@ -106,14 +169,14 @@ public class ColorServlet extends HttpServlet {
         ServletContext application = request.getServletContext();
         application.setAttribute("color", color);
         application.setAttribute("stoneArea", stoneArea);
-        application.setAttribute("stoneSelectColor", stoneSelectColor);
 
         String path = "/matrix.jsp";
         RequestDispatcher dis = request.getRequestDispatcher(path);
         dis.forward(request, response);
     }//doGet
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //---- get select ----
         request.setCharacterEncoding("UTF-8");
         int select = Integer.parseInt(request.getParameter("select"));
@@ -143,7 +206,8 @@ public class ColorServlet extends HttpServlet {
         dis.forward(request, response);
     }//doPost
 
-}//class
+}//class*/
+
 
 
 

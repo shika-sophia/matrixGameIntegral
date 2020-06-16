@@ -20,6 +20,7 @@
 
 <% List<String> color = (List<String>) application.getAttribute("color"); %>
 <% List<String> stoneArea =(List<String>) application.getAttribute("stoneArea"); %>
+<% List<String> stoneSelectColor = (List<String>) application.getAttribute("stoneSelectColor"); %>
 
 <% String message = (String) request.getAttribute("message"); %>
 <% User user = (User) session.getAttribute("user"); %>
@@ -256,7 +257,7 @@
 <th colspan="5" id="userInfo" >
   <p>User Name : <%= user.getName() %></p>
   <p>Point : <%= user.getPoint() %></p>
-  <p>Lank : E</p>
+  <p>Stage: 001</p>
 </th>
 </tr>
 <tr>
@@ -296,9 +297,15 @@
 <div id="under" align="center">
 <table class="stone" border="1">
 <tr>
-  <td><%//= stoneImage %></td>
-  <td><%//= stoneImage %></td>
-  <td><%//= stoneImage %></td>
+<form action="/matrixGameIntegral/MkmSampleServlet" method="post">
+  <td><button type="submit" name="stoneSelect" value="tri"
+    style="border-color: <%= stoneSelectColor.get(1) %>"><%//= stoneImage %></button>
+  <td><button type="submit" name="stoneSelect" value="twice"
+    style="border-color: <%= stoneSelectColor.get(2) %>"><%//= stoneImage %></button>
+  <td><button type="submit" name="stoneSelect" value="mono"
+    style="border-color: <%= stoneSelectColor.get(3) %>"><%//= stoneImage %></button>
+</form>
+
 </tr>
 </table>
 
