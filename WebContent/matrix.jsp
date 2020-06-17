@@ -2,7 +2,7 @@
  /**
  *@title matrix.jsp
  *@author Shika
- *@date First:2020-05-28 Last:2020-06-05
+ *@date First:2020-05-28 Last:2020-06-17
  *@see ColorSevlet.java
  *@see matrixStyle.css
 
@@ -48,6 +48,46 @@
 <hr color="white" size="5">
 </div>
 
+<!-- Under Section -->
+<!-- Stone Table -->
+<div id="under" align="center">
+<table class="stone" border="1">
+<tr>
+<form action="/matrixGameIntegral/MkmSampleServlet" method="post">
+  <td style="border-width: 3px; border-color: <%= stoneSelectColor.get(1) %>">
+    <button id="stone" type="submit" name="stoneSelect" value="tri"
+    style="background-color: lavenderblush; border-style: none">
+    <img src="image/triStoneX.png" width="70" height="70" border="0" alt="matrixGame_triStone">
+  </button>
+  <td style="border-width: 3px; border-color: <%= stoneSelectColor.get(2) %>">
+    <button id="stone" type="submit" name="stoneSelect" value="twice"
+    style="background-color: lavenderblush; border-style: none">
+    <img src="image/twiceStone.png" width="35" height="70" border="0" alt="matrixGame_twiceStone">
+  </button>
+  <td style="border-width: 3px; border-color: <%= stoneSelectColor.get(3) %>">
+  <button id="stone" type="submit" name="stoneSelect" value="mono"
+    style="background-color: lavenderblush; border-style: none">
+    <img src="image/monoStone.png" width="35" height="35" border="0" alt="matrixGame_monoStone">
+  </button>
+</form>
+
+</tr>
+</table>
+
+<!-- Message Table -->
+<table class="message" border="0">
+<tr><td id="message">
+<p style="color: hotpink;"><b><i>＊ Message ＊</i></b></p>
+<form action="/matrixGameIntegral/SaveServlet" method="post">
+<% if (message != null) {%>
+  <p><%= message %></p>
+　<input type="submit" name="comfirm" value="YES">　<input type="submit" name="comfirm" value="NO">
+<% } else if (message == null){
+   ;} %>
+</form>
+</td></tr></table>
+</div>
+
 <!-- Main Section -->
 <div id="main" align="center">
 <!-- Table 5×5 Matrix Table -->
@@ -64,185 +104,260 @@
 
 <tr class="Y1">
   <td
-    style="border-color: <%= stoneArea.get(1) %>;
+    style="
+        border-width: 2px;
+        border-color: <%= stoneArea.get(1) %>;
         background-color: <%= color.get(1) %>" >
     <button type="submit" name="select" value="1"
-        style="border-color: <%= stoneArea.get(1) %>;
+        style="
+        border-style: none;
         background-color: <%= color.get(1) %>">１</button>
   </td>
   <td
-    style="border-color: <%= stoneArea.get(2) %>;
+    style="
+        border-width: 2px;
+        border-color: <%= stoneArea.get(2) %>;
         background-color: <%= color.get(2) %>">
     <button type="submit" name="select" value="2"
-        style="border-color: <%= stoneArea.get(2) %>;
+        style="
+        border-style: none;
         background-color: <%= color.get(2) %>">２</button>
   </td>
   <td
-    style="border-color: <%= stoneArea.get(3) %>;
+    style="
+        border-width: 2px;
+        border-color: <%= stoneArea.get(3) %>;
         background-color: <%= color.get(3) %>">
     <button type="submit" name="select" value="3"
-        style="border-color: <%= stoneArea.get(3) %>;
+        style="
+        border-style: none;
         background-color: <%= color.get(3) %>">３</button>
   </td>
   <td
-    style="border-color: <%= stoneArea.get(4) %>;
+    style="
+        border-width: 2px;
+        border-color: <%= stoneArea.get(4) %>;
         background-color: <%= color.get(4) %>">
     <button type="submit" name="select" value="4"
-        style="border-color: <%= stoneArea.get(4) %>;
+        style="
+        border-style: none;
         background-color: <%= color.get(4) %>">４</button>
   </td>
   <td
-    style="border-color: <%= stoneArea.get(5) %>;
+    style="
+        border-width: 2px;
+        border-color: <%= stoneArea.get(5) %>;
         background-color: <%= color.get(5) %>">
     <button type="submit" name="select" value="5"
-        style="border-color: <%= stoneArea.get(5) %>;
+        style="
+        border-style: none;
         background-color: <%= color.get(5) %>">５</button>
   </td>
 </tr>
 <tr class="Y2">
   <td
-    style="border-color: <%= stoneArea.get(6) %>;
+    style="
+        border-width: 2px;
+        border-color: <%= stoneArea.get(6) %>;
         background-color: <%= color.get(6) %>">
     <button type="submit" name="select" value="6"
-    style="border-color: <%= stoneArea.get(6) %>;
+        style="
+        border-style: none;
         background-color: <%= color.get(6) %>">６</button>
   </td>
   <td
-    style="border-color: <%= stoneArea.get(7) %>;
+    style="
+        border-width: 2px;
+        border-color: <%= stoneArea.get(7) %>;
         background-color: <%= color.get(7) %>">
     <button type="submit" name="select" value="7"
-        style="border-color: <%= stoneArea.get(7) %>;
+        style="
+        border-style: none;
         background-color: <%= color.get(7) %>">７</button>
   </td>
   <td
-    style="border-color: <%= stoneArea.get(8) %>;
+    style="
+        border-width: 2px;
+        border-color: <%= stoneArea.get(8) %>;
         background-color: <%= color.get(8) %>">
     <button type="submit" name="select" value="8"
-    style="border-color: <%= stoneArea.get(8) %>;
+        style="
+        border-style: none;
         background-color: <%= color.get(8) %>">８</button>
   </td>
   <td
-    style="border-color: <%= stoneArea.get(9) %>;
+    style="
+        border-width: 2px;
+        border-color: <%= stoneArea.get(9) %>;
         background-color: <%= color.get(9) %>">
     <button type="submit" name="select" value="9"
-    style="border-color: <%= stoneArea.get(9) %>;
+        style="
+        border-style: none;
         background-color: <%= color.get(9) %>">９</button>
   </td>
   <td
-    style="border-color: <%= stoneArea.get(10) %>;
+    style="
+        border-width: 2px;
+        border-color: <%= stoneArea.get(10) %>;
         background-color: <%= color.get(10) %>">
     <button type="submit" name="select" value="10"
-    style="border-color: <%= stoneArea.get(10) %>;
+        style="
+        border-style: none;
         background-color: <%= color.get(10) %>">10</button>
   </td>
 </tr>
 <tr class="Y3">
   <td
-    style="border-color: <%= stoneArea.get(11) %>;
+    style="
+        border-width: 2px;
+        border-color: <%= stoneArea.get(11) %>;
         background-color: <%= color.get(11) %>">
     <button type="submit" name="select" value="11"
-    style="border-color: <%= stoneArea.get(11) %>;
+        style="
+        border-style: none;
         background-color: <%= color.get(11) %>">11</button>
   </td>
   <td
-    style="border-color: <%= stoneArea.get(12) %>;
+    style="
+        border-width: 2px;
+        border-color: <%= stoneArea.get(12) %>;
         background-color: <%= color.get(12) %>">
     <button type="submit" name="select" value="12"
-    style="border-color: <%= stoneArea.get(12) %>;
+        style="
+        border-style: none;
         background-color: <%= color.get(12) %>">12</button>
   </td>
   <td
-    style="border-color: <%= stoneArea.get(13) %>;
+    style="
+        border-width: 2px;
+        border-color: <%= stoneArea.get(13) %>;
         background-color: <%= color.get(13) %>">
     <button type="submit" name="select" value="13"
-    style="border-color: <%= stoneArea.get(13) %>;
+        style="
+        border-style: none;
         background-color: <%= color.get(13) %>">13</button>
   </td>
   <td
-    style="border-color: <%= stoneArea.get(14) %>;
+    style="
+        border-width: 2px;
+        border-color: <%= stoneArea.get(14) %>;
         background-color: <%= color.get(14) %>">
     <button type="submit" name="select" value="14"
-    style="border-color: <%= stoneArea.get(14) %>;
+        style="
+        border-style: none;
         background-color: <%= color.get(14) %>">14</button>
   </td>
   <td
-    style="border-color: <%= stoneArea.get(15) %>;
+    style="
+        border-width: 2px;
+        border-color: <%= stoneArea.get(15) %>;
         background-color: <%= color.get(15) %>">
     <button type="submit" name="select" value="15"
-    style="border-color: <%= stoneArea.get(15) %>;
+        style="
+        border-style: none;
         background-color: <%= color.get(15) %>">15</button>
   </td>
 </tr>
 <tr class="Y4">
   <td
-    style="border-color: <%= stoneArea.get(16) %>;
+    style="
+        border-width: 2px;
+        border-color: <%= stoneArea.get(16) %>;
         background-color: <%= color.get(16) %>">
     <button type="submit" name="select" value="16"
-    style="border-color: <%= stoneArea.get(16) %>;
+        style="
+        border-style: none;
         background-color: <%= color.get(16) %>">16</button>
   </td>
   <td
-    style="border-color: <%= stoneArea.get(17) %>;
+    style="
+        border-width: 2px;
+        border-color: <%= stoneArea.get(17) %>;
         background-color: <%= color.get(17) %>">
     <button type="submit" name="select" value="17"
-    style="border-color: <%= stoneArea.get(17) %>;
+        style="
+        border-style: none;
         background-color: <%= color.get(17) %>">17</button>
   </td>
   <td
-    style="border-color: <%= stoneArea.get(18) %>;
+    style="
+        border-width: 2px;
+        border-color: <%= stoneArea.get(18) %>;
         background-color: <%= color.get(18) %>">
     <button type="submit" name="select" value="18"
-    style="border-color: <%= stoneArea.get(18) %>;
+        style="
+        border-style: none;
         background-color: <%= color.get(18) %>">18</button>
   </td>
   <td
-    style="border-color: <%= stoneArea.get(19) %>;
+    style="
+        border-width: 2px;
+        border-color: <%= stoneArea.get(19) %>;
         background-color: <%= color.get(19) %>">
     <button type="submit" name="select" value="19"
-    style="border-color: <%= stoneArea.get(19) %>;
+        style="
+        border-style: none;
         background-color: <%= color.get(19) %>">19</button>
   </td>
   <td
-    style="border-color: <%= stoneArea.get(20) %>;
+    style="
+        border-width: 2px;
+        border-color: <%= stoneArea.get(20) %>;
         background-color: <%= color.get(20) %>">
     <button type="submit" name="select" value="20"
-    style="border-color: <%= stoneArea.get(20) %>;
+        style="
+        border-style: none;
         background-color: <%= color.get(20) %>">20</button>
   </td></tr>
 <tr class="Y5">
   <td
-    style="border-color: <%= stoneArea.get(21) %>;
+    style="
+        border-width: 2px;
+        border-color: <%= stoneArea.get(21) %>;
         background-color: <%= color.get(21) %>">
     <button type="submit" name="select" value="21"
-    style="border-color: <%= stoneArea.get(21) %>;
+        style="
+        border-style: none;
         background-color: <%= color.get(21) %>">21</button>
   </td>
   <td
-    style="border-color: <%= stoneArea.get(22) %>;
+    style="
+        border-width: 2px;
+        border-color: <%= stoneArea.get(22) %>;
         background-color: <%= color.get(22) %>">
     <button type="submit" name="select" value="22"
-    style="border-color: <%= stoneArea.get(22) %>;
+        style="
+        border-style: none;
         background-color: <%= color.get(22) %>">22</button>
   </td>
   <td
-    style="border-color: <%= stoneArea.get(23) %>;
+    style="
+        border-width: 2px;
+        border-color: <%= stoneArea.get(23) %>;
         background-color: <%= color.get(23) %>">
     <button type="submit" name="select" value="23"
-    style="border-color: <%= stoneArea.get(23) %>;
+        style="
+        border-style: none;
         background-color: <%= color.get(23) %>">23</button>
   </td>
   <td
-    style="border-color: <%= stoneArea.get(24) %>;
+    style="
+        border-width: 2px;
+        border-color: <%= stoneArea.get(24) %>;
         background-color: <%= color.get(24) %>">
     <button type="submit" name="select" value="24"
-    style="border-color: <%= stoneArea.get(24) %>;
+        style="
+        border-style: none;
         background-color: <%= color.get(24) %>">24</button>
   </td>
   <td
-    style="border-color: <%= stoneArea.get(25) %>;
+    style="
+        border-width: 2px;
+        border-color: <%= stoneArea.get(25) %>;
         background-color: <%= color.get(25) %>">
     <button type="submit" name="select" value="25"
-    style="border-color: <%= stoneArea.get(25) %>;
+        style="
+        border-style: none;
         background-color: <%= color.get(25) %>">25</button>
   </td>
 </tr>
@@ -270,7 +385,7 @@
 <tr>
   <td>　</td>
   <td><button type="submit" name="cross" value="left">≪</button></td>
-  <td>　</td>
+  <td><button type="submit" name="cross" value="decide"><b>決定</b></button></td>
   <td><button type="submit" name="cross" value="right">≫</button></td>
   <td>　</td>
 </tr>
@@ -286,41 +401,12 @@
 <tr>
 <td colspan="5">
   <form action="/matrixGameIntegral/SaveServlet" method="get">
-    <input type="submit" name="controle" value="Reset">　<input type="submit" name="contorole" value="Save">　<input type="submit" name="controle" value="Logout"></p>
+    <input type="submit" name="controle" value="Reverse">　<input type="submit" name="controle" value="Reset">　<input type="submit" name="contorole" value="Save">　<input type="submit" name="controle" value="Logout"></p>
   </form>
 </td></tr>
 </table>
 
 </div><!-- class="main" 終了 -->
 
-<!-- Under Section -->
-<div id="under" align="center">
-<table class="stone" border="1">
-<tr>
-<form action="/matrixGameIntegral/MkmSampleServlet" method="post">
-  <td><button type="submit" name="stoneSelect" value="tri"
-    style="border-color: <%= stoneSelectColor.get(1) %>"><%//= stoneImage %></button>
-  <td><button type="submit" name="stoneSelect" value="twice"
-    style="border-color: <%= stoneSelectColor.get(2) %>"><%//= stoneImage %></button>
-  <td><button type="submit" name="stoneSelect" value="mono"
-    style="border-color: <%= stoneSelectColor.get(3) %>"><%//= stoneImage %></button>
-</form>
-
-</tr>
-</table>
-
-<table class="message" border="0">
-<tr><td id="message">
-<p style="color: hotpink;"><b><i>＊ Message ＊</i></b></p>
-<form action="/matrixGameIntegral/SaveServlet" method="post">
-  <p><%= message %></p>
-
-<% if (message != null) {%>
-　<input type="submit" name="comfirm" value="YES">　<input type="submit" name="comfirm" value="NO">
-<% } %>
-</form>
-
-</td></tr></table>
-</div>
 </body>
 </html>

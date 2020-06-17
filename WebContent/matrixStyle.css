@@ -2,6 +2,7 @@
 /* #### Style Sheet for matrix.jsp #### */
 
 body {
+
   background-color: mistyrose;
   background: radial-gradient(ellipse farthest-side at center, white ,mistyrose 85% ,pink);
   font-family: "MS P明朝",serif;
@@ -22,13 +23,14 @@ div#upper{
     height: 60px;
 }
 
-div#main {
-  margin-top: 40px;
+div#under{
+    margin-top: 40px;
     width: 1000px;
 }
 
-div#under{
+div#main {
     margin-top: 20px;
+    margin-bottom: 40px;
     width: 1000px;
 }
 
@@ -37,10 +39,11 @@ table {
     table-layout: fixed;
     font-size: medium;
     font-family: "MS P明朝",serif;
+    line-height: 1em;
     background-color: lavenderblush;
     border-width: 2px;
     border-color: pink;
-    border-spacing: 5px;
+    border-spacing: 3px;
     border-radius: 10px;
     border-style: ridge;
 }
@@ -86,6 +89,7 @@ table.stone{
     width: 400px;
     height: 100px;
     border-collapse: separate;
+    text-align: center;
 }
 
 table.message{
@@ -102,7 +106,6 @@ td#message{
      vertical-align: top;
 }
 
-
 /* ==== Parts Decoration ==== */
 
 buttan {
@@ -111,3 +114,6 @@ buttan {
     font-size: medium;
 }
 
+buttan#stone {
+
+}
