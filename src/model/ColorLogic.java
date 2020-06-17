@@ -50,30 +50,30 @@ public class ColorLogic {
 
 
   public List<String> stoneSelectPaint(String stoneSelect) {
-	List<String> stoneSelectColor = new ArrayList<>();
-	stoneSelectColor.add("none");
+    List<String> stoneSelectColor = new ArrayList<>();
+    stoneSelectColor.add("none");
     stoneSelectColor.add("none");
     stoneSelectColor.add("none");
     stoneSelectColor.add("none");
 
     if (stoneSelect.equals("tri")) {
-    	stoneSelectColor.set(1,"hotpink");
-    	stoneSelectColor.set(2,"lavenderblush");
-    	stoneSelectColor.set(3,"lavenderblush");
+        stoneSelectColor.set(1,"hotpink");
+        stoneSelectColor.set(2,"mistyrose");
+        stoneSelectColor.set(3,"mistyrose");
 
     } else if (stoneSelect.equals("twice")) {
-    	stoneSelectColor.set(1,"lavenderblush");
-    	stoneSelectColor.set(2,"hotpink");
-    	stoneSelectColor.set(3,"lavenderblush");
+        stoneSelectColor.set(1,"mistyrose");
+        stoneSelectColor.set(2,"hotpink");
+        stoneSelectColor.set(3,"mistyrose");
 
     } else if (stoneSelect.equals("mono")) {
-    	stoneSelectColor.set(1,"lavenderblush");
-    	stoneSelectColor.set(2,"lavenderblush");
-    	stoneSelectColor.set(3,"hotpink");
+        stoneSelectColor.set(1,"mistyrose");
+        stoneSelectColor.set(2,"mistyrose");
+        stoneSelectColor.set(3,"hotpink");
 
     }
 
-	return stoneSelectColor;
+    return stoneSelectColor;
 
   }//stoneSelectPaint()
 }//class
