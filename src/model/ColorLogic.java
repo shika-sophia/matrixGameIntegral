@@ -28,7 +28,7 @@ public class ColorLogic {
 
   }//ChangeColor()
 
-  public List<String> paintColor(int select, List<Integer> colorDB) {
+  public List<String> paintColor(List<Integer> colorDB) {
       List<String> color = new ArrayList<>(30);
       color.add(0,"none"); //マス番とリスト番号を合わせるためのダミー
 
@@ -36,7 +36,7 @@ public class ColorLogic {
       String offColor = "lavenderblush";
 
       for (int i = 1; i < colorDB.size(); i++) { //ダミーがあるので 1から
-          //set colorDB to List "color"
+          //---- set colorDB to List "color" ----
           if (colorDB.get(i) == 0) {
               color.add(i , offColor);
 
