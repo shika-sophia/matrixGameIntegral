@@ -10,24 +10,35 @@ User user = (User) session.getAttribute("User");
 <head>
 <meta charset="UTF-8">
 <title>matrix登録画面</title>
+<link rel="stylesheet" href="indexStyle.css">
 </head>
 <body>
-
-
-<main>
-<h2>登録内容確認</h2>
-<ul>
-	<li>ユーザーID：<%= user.getAccountId() %></li>
-	<li>名前：<%= user.getName() %></li>
-	<li>パスワード：<%= user.getPass() %></li>
-</ul>
-
+<!-- Upper Section -->
+<div id="upper">
+<hr color="white" size="5">
+<h1><i>＊ Matrix Game ＊　</i></h1>
+<hr color="white" size="5">
+</div>
+<br>
+<br>
+<br>
+<div id="index" align="center">
+<table class="index">
+<tr>
+  <th style="text-align: center; font-size: large;">
+<i>＊ 登録内容確認 ＊　　</i>
+  </th></tr>
+<tr><td>
+  <p>アカウントID：<%= user.getAccountId() %></p>
+  <p>ユーザー名　：<%= user.getName() %></p>
+  <p>パスワード　：<%= user.getPass() %></p>
+<br>
+<br>
 <p>上記の内容で登録しますか？</p>
-<ul>
-	<li><a href="/matrixGamemkm/RegisterServlet?action=done">登録する</a></li>
-	<li><a href="/matrixGamemkm/RegisterServlet">戻る</a></li>
-</ul>
-</main>
+<p><a href="/matrixGameIntegral/RegisterServlet?action=done">登録する</a></p>
+<p><a href="/matrixGameIntegral/RegisterServlet">戻る</a></p>
 
+</td></tr></table>
+</div>
 </body>
 </html>

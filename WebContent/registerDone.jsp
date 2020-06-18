@@ -11,11 +11,26 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>DOCOTSUBU</title>
+<title>registerDone</title>
+<link rel="stylesheet" href="indexStyle.css">
 </head>
 <body>
-
-<main>
+<!-- Upper Section -->
+<div id="upper">
+<hr color="white" size="5">
+<h1><i>＊ Matrix Game ＊　</i></h1>
+<hr color="white" size="5">
+</div>
+<br>
+<br>
+<br>
+<div id="index" align="center">
+<table class="index">
+<tr>
+  <th style="text-align: center; font-size: large;">
+<i>＊ 登録結果 ＊　　</i>
+  </th></tr>
+<tr><td>
 	<!-- ログイン成功した場合の出力 -->
 	<%
 		if (user != null) {
@@ -23,30 +38,32 @@
 	<p>ようこそ<%= user.getName() %>さん</p>
 	<p><%= user.getPass() %></p>
 	<p><%= user.getAccountId() %></p>
-	<h2>登録完了</h2>
+<br>
 	<p>会員登録が完了しました！</p>
+<br>
+<br>
 	<p>
-		<a href="/matrixGamemkm/StartServlet">ゲーム選択画面へ</a>
+		<a href="/matrixGameIntegral/StartServlet">ゲーム選択画面へ</a>
 	</p>
 	<% } else { %>
 	<!-- ログイン失敗した場合の出力 -->
 	<p>登録失敗</p>
+<br>
+<br>
 	<p>
-		<a href="/matrixGamemkm/register.jsp">新規登録へ戻る</a>
+		<a href="/matrixGameIntegral/RegisterServlet">新規登録へ戻る</a>
 	</p>
 	<% } %>
-
+<br>
 	<!-- ログアウト処理 -->
 	<p>
-		<a href="/matrixGamemkm/LogoutServlet">ログアウト</a>
+		<a href="/matrixGameIntegral/LogoutServlet">ログアウト</a>
 	</p>
+<br>
 	<p>
-		<a href="/matrixGamemkm">トップへ戻る</a>
-</main>
-
-
-<main>
-
-</main>
+		<a href="/matrixGameIntegral">トップへ戻る</a>
+	</p>
+</td></tr></table>
+</div>
 </body>
 </html>
