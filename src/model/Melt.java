@@ -5,19 +5,21 @@ import java.util.List;
 
 public class Melt {
 
-	public static void main(String[] args) {
-    //public List<Integer> meltStone(MatrixBeans matrixDB) {
-        //List<Integer> colorDB = (List<Integer>) matrixDB.getColorDB();
-		List<Integer> colorDB = new ArrayList<>(32);
-        colorDB.add(9);
+	//public static void main(String[] args) {
+    public List<Integer> meltStone(MatrixBeans matrixDB) {
+        List<Integer> colorDB = (List<Integer>) matrixDB.getColorDB();
+		//List<Integer> colorDB = new ArrayList<>(32);
+        //colorDB.add(9);
 
-        int colorDemo[] = {9,1,1,1,1,1,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0};
+        //int colorDemo[] = {9,1,0,1,1,1,1,0,1,0,1,1,0,1,0,0,1,1,1,1,1,1,0,1,0,0};
 
+        /*
         for(int i = 1; i <= 25; i++) {
         	colorDB.add(colorDemo[i]);
         }
+        */
 
-        System.out.println("Before" + colorDB);
+        //System.out.println("Before" + colorDB);
 
         List<String> meltFlag = new ArrayList<>();
 
@@ -75,7 +77,13 @@ public class Melt {
 		}
         //System.out.println("After" + colorDB);
 
-        meltPaint(colorDB,meltFlag);
+
+        colorDB = meltPaint(colorDB,meltFlag);
+
+        matrixDB.setColorDB(colorDB);
+
+        return colorDB;
+
 
 	}//meltStone() or main()
 
@@ -84,7 +92,7 @@ public class Melt {
 
 		//System.out.println("Before" + colorDB);
 
-		//System.out.println("meltFlag" + meltFlag);
+		System.out.println("meltFlag" + meltFlag);
 
 		for (String flag : meltFlag) {
 
@@ -192,6 +200,7 @@ public class Melt {
 }//class
 
 /*
-Before[9, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0]
-After[9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+Before[9, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0]
+meltFlag[X1, X3, Y4]
+After[9, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 */
