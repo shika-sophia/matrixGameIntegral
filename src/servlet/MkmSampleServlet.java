@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import model.StoneBeans;//beans
 import model.StoneBoolean;
 import model.StoneLogic;//model
-import model.StoneputColor;
 
 @WebServlet("/MkmSampleServlet")
 public class MkmSampleServlet extends HttpServlet {
@@ -24,10 +23,10 @@ public class MkmSampleServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException,
 	IOException {
+
 		request.setCharacterEncoding("UTF-8");
 
-		List<Integer> stoneAreaDB = new ArrayList<>(30);
-	    List<String> stoneArea = new ArrayList<>(30);
+
 
 	}//doget
 
@@ -36,19 +35,38 @@ public class MkmSampleServlet extends HttpServlet {
 	IOException {//
 		//文字コード設定
 		request.setCharacterEncoding("UTF-8");
-		//selectの取得
-		int select=Integer.parseInt(request.getParameter("select")) ;
-		//stoneSelectの取得
-		String stoneSelect=request.getParameter("stoneSelect");
 		//仮の値を指定
-		 stoneSelect="tri";
-		 select=7;
+		String  stoneSelect="none";
+		int select=0;
+		//select,stoneSelectが未入力ならmatrix.jspへフォワード
+
+		//selectの取得
+		select=Integer.parseInt(request.getParameter("select")) ;
+		//stoneSelectの取得
+		stoneSelect=request.getParameter("stoneSelect");
+
+		if(stoneSelect.equals("none")) {//if未入力
+			//matrix.jspへフォワード
+			String path = "/fail.jsp";
+			RequestDispatcher dis = request.getRequestDispatcher(path);
+			dis.forward(request, response);
+		}else if(select==0) {
+			//matrix.jspへフォワード
+			String path = "/fail.jsp";
+			RequestDispatcher dis = request.getRequestDispatcher(path);
+			dis.forward(request, response);
+		}//if未入力
+
 	    List<Integer> stoneAreaDB = new ArrayList<>(30);
-	    List<String> stoneArea = new ArrayList<>(30);
+	    //List<String> stoneArea = new ArrayList<>(30);
 	    //配列の０番目をダミーに
-	    stoneArea.add(0, "none");
+	    //stoneArea.add(0, "none");
 	    stoneAreaDB.add(0, 9);
-		StoneBeans stb=new StoneBeans(stoneSelect,stoneAreaDB,stoneArea,select);
+
+	    for (int i = 1; i <= 25; i++) {
+            stoneAreaDB.add(0);
+        }//for
+		StoneBeans stb=new StoneBeans(stoneSelect,stoneAreaDB,select);
 
 		//StoneBooleanの呼び出し
 		StoneBoolean stoneboolean=new StoneBoolean();
@@ -65,31 +83,34 @@ public class MkmSampleServlet extends HttpServlet {
 		StoneLogic stoneLogic=new StoneLogic();
 		//StoneLogicを起動、stoneAreaDB
 		stoneAreaDB=stoneLogic.execute(stb);
-		//putColorStoneの呼び出し,pcst作成
+		/*//putColorStoneの呼び出し,pcst作成
 		StoneputColor pcst= new StoneputColor();
-		//起動、stoneArea
-		stoneArea=pcst.execute(stb);
+		/*起動、stoneArea
+		stoneArea=pcst.execute(stb);*/
+/*
+		//StonePartsの呼び出し
+		StoneParts stp=new StoneParts();
+		//実行
+		int[] stoneparts=stp.execute(stb);*/
+
 
 		//stoneAreaDBをアプリケーションスコープに取得
 		ServletContext application= request.getServletContext();
 		//stoneArea,stoneAreaDBをアプリケーションスコープに保存
-		application.setAttribute("stoneArea",stoneArea);
 		application.setAttribute("stoneAreaDB",stoneAreaDB);
+		//セッションスコープに」
+
 
 		//matrix.jspへフォワード
 		String path = "/matrix.jsp";
 		RequestDispatcher dis = request.getRequestDispatcher(path);
 		dis.forward(request, response);
+		/*
 
-
-
-
-
-
-
-
-
-
+		//SampleResult.jspへフォワード仮ページのため本実装時は上記と入れ替え
+		String path = "/sampleResult.jsp";
+		RequestDispatcher dis = request.getRequestDispatcher(path);
+		dis.forward(request, response);*/
 
 		/*if(stoneSelect=="tri") {
 
