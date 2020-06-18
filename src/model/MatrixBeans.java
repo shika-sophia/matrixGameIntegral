@@ -17,11 +17,16 @@ package model;
 import java.io.Serializable;
 import java.util.List;
 
-//====== constracter Beans for stock colorDB/ colorDBを保持するBeans====
+//====== constracter Beans for stock colorDB etc/ colorDB等を保持するBeans====
 public class MatrixBeans implements Serializable {
   private List<Integer> colorDB;
   private int puzzleId;
   private String saveDateTime;
+
+  private List<Integer> stoneAreaDB;
+  private int select;
+  private String stoneSelect;
+
 
   public MatrixBeans() {}
 
@@ -35,8 +40,9 @@ public class MatrixBeans implements Serializable {
       this.saveDateTime = saveDateTime;
   }
 
+  // ====== getter and setter ======
   public List<Integer> getColorDB() {
-    return colorDB;
+      return colorDB;
   }
 
   public void setColorDB(List<Integer> colorDB) {
@@ -44,19 +50,43 @@ public class MatrixBeans implements Serializable {
   }
 
   public int getPuzzleId() {
-    return puzzleId;
+      return puzzleId;
   }
 
   public void setPuzzleId(int puzzleId) {
-    this.puzzleId = puzzleId;
+      this.puzzleId = puzzleId;
   }
 
   public String getSaveDateTime() {
-    return saveDateTime;
+      return saveDateTime;
   }
 
   public void setSaveDateTime(String saveDateTime) {
-    this.saveDateTime = saveDateTime;
+      this.saveDateTime = saveDateTime;
+  }
+
+  public List<Integer> getStoneAreaDB() {
+      return stoneAreaDB;
+  }
+
+  public void setStoneAreaDB(List<Integer> stoneAreaDB) {
+      this.stoneAreaDB = stoneAreaDB;
+  }
+
+  public int getSelect() {
+      return select;
+  }
+
+  public void setSelect(int select) {
+      this.select = select;
+  }
+
+  public String getStoneSelect() {
+      return stoneSelect;
+  }
+
+  public void setStoneSelect(String stoneSelect) {
+      this.stoneSelect = stoneSelect;
   }
 
 }//class
