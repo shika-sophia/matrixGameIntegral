@@ -1,10 +1,8 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import DAO.SaveDAO;
 import model.SaveDateTime;
 import model.User;
 
@@ -47,6 +44,7 @@ public class SaveServlet extends HttpServlet {
       HttpSession session = request.getSession();
       session.setAttribute("controle", controle);
 
+
       String path ="/matrix.jsp";
       RequestDispatcher dis = request.getRequestDispatcher(path);
       dis.forward(request, response);
@@ -56,14 +54,11 @@ public class SaveServlet extends HttpServlet {
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
       // ---- get Parameters ----
-	  request.setCharacterEncoding("UTF-8");
+      request.setCharacterEncoding("UTF-8");
       String comfirm = (String) request.getParameter("comfirm");
 
       HttpSession session = request.getSession();
       User user = (User) session.getAttribute("user");
-
-      ServletContext application = request.getServletContext();
-      List<Integer> colorDB = application.setAttribute(name, object);
 
       String controle = (String) session.getAttribute("controle");
 
@@ -73,7 +68,7 @@ public class SaveServlet extends HttpServlet {
       switch (controle) {
         case "Save":
           if (comfirm.equals("YES")) {
-        	  SaveDateTime sdt = new SaveDateTime();
+              SaveDateTime sdt = new SaveDateTime();
               saveDateTime = sdt.saveDateTime();
 
           } else if (comfirm.equals("NO")) {
@@ -90,14 +85,12 @@ public class SaveServlet extends HttpServlet {
       }//switch
 
       //---- call method ----
-      int puzzleId = user.getPuzzleId();
-      int point = user.getPoint();
 
-      boolean isSave = SaveDAO.saveGame(puzzleId, point, colorDB, saveDateTime);
+      //boolean isSave = SaveDAO.saveGame(matrixDB);
 
-      if (isSave) {
+      //if (isSave) {
 
-      }
+      //}
 
   }//doPost()
 
