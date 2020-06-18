@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import model.ColorLogic;
 import model.MatrixBeans;
+import model.Melt;
 import model.SaveDateTime;
 import model.User;
 
@@ -86,7 +87,7 @@ public class ColorServlet extends HttpServlet {
 
 
 
-        color = colorLogic.paintColor(select, colorDB);
+        color = colorLogic.paintColor(colorDB);
 
         SaveDateTime sdt = new SaveDateTime();
         String saveDateTime = sdt.saveDateTime();
@@ -124,7 +125,12 @@ public class ColorServlet extends HttpServlet {
         //---- call method ----
         List<Integer> colorDB = matrixDB.getColorDB();
         colorDB = colorLogic.changeColor(matrixDB, select, colorDB);
-        List<String> color = colorLogic.paintColor(select, colorDB);
+        matrixDB.setColorDB(colorDB);
+
+        Melt melt = new Melt();
+        colorDB = melt.meltStone(matrixDB);
+
+        List<String> color = colorLogic.paintColor(colorDB);
 
         //System.out.println(select);
         //System.out.println(colorDB);
