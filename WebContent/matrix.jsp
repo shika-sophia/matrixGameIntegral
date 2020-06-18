@@ -35,7 +35,7 @@
   window.open("http://localhost:8080/matrixGameIntegral/ColorServlet","Matrix Game","width=1000px,heigt=800px");
   </script>
  -->
-<title>matrixGame View</title>
+<title>matrixGame Main View</title>
 
 <link rel="stylesheet" href="matrixStyle.css">
 </head>
@@ -77,9 +77,9 @@
 <!-- Message Table -->
 <table class="message" border="0">
 <tr><td id="message">
-<p style="color: hotpink;"><b><i>＊ Message ＊</i></b></p>
+<p style="color: hotpink; vertical-align: top"><b><i>＊ Message ＊</i></b></p>
 <form action="/matrixGameIntegral/SaveServlet" method="post">
-<% if (message != null) {%>
+<% if (message != null && !(message.equals(""))) {%>
   <p><%= message %></p>
 　<input type="submit" name="comfirm" value="YES">　<input type="submit" name="comfirm" value="NO">
 <% } else if (message == null){
@@ -89,8 +89,8 @@
 </div>
 
 <!-- Main Section -->
-<div id="main" align="center">
 <!-- Table 5×5 Matrix Table -->
+<div id="main" align="center">
 <form id="select" action="/matrixGameIntegral/ColorServlet" method="post">
 <table class="matrix" border="1">
 
@@ -365,7 +365,6 @@
 </form>
 
 <!-- Controler Table -->
-
 <table class="controler" border="0">
 <form action="/matrixGameIntegral/StoneMoveServlet" method="post">
 <tr>
@@ -383,11 +382,11 @@
   <td>　</td>
 </tr>
 <tr>
-  <td>　</td>
+  <td><button type="submit" name="stoneMove" value="turnLeft"><i>Turn<br>Left</i></button></td>
   <td><button type="submit" name="stoneMove" value="left">≪</button></td>
   <td><button type="submit" name="stoneMove" value="enter"><b>Enter</b></button></td>
   <td><button type="submit" name="stoneMove" value="right">≫</button></td>
-  <td>　</td>
+  <td><button type="submit" name="stoneMove" value="turnRight"><i>Turn<br>Right</i></button></td>
 </tr>
 <tr>
   <td>　</td>
