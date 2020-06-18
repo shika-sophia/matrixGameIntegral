@@ -1,4 +1,4 @@
-package model;//ブロック形判断
+package model;//ブロック形判断stoneAreaDBを戻す
 //ブロックの表示する色の指定
 
 import java.util.List;
@@ -10,15 +10,13 @@ public class StoneLogic {
 		List<Integer> stoneAreaDB=stb.getStoneAreaDB();
 		Integer select=stb.getSelect();
 		String stoneSelect=stb.getStoneSelect();
-		for (int i = 1; i <= 25; i++) {
-            stoneAreaDB.add(0);
-        }//for
+
 		if(stoneSelect.equals("tri")) {//3つのブロックの定義
 			/*selectで指定したstaDBを0から１へ
 			 * ブロックの形でほかの変化させる場所の指定*/
 			stoneAreaDB.set(select,1);
 			stoneAreaDB.set(select+1,1);
-			stoneAreaDB.set(select+2,1);
+			stoneAreaDB.set(select-5,1);
 		}else if(stoneSelect.equals("twice")) {
 			stoneAreaDB.set(select,1);
 			stoneAreaDB.set(select+1,1);
