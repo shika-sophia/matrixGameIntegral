@@ -367,32 +367,32 @@
 <!-- Controler Table -->
 
 <table class="controler" border="0">
-<form action="/matrixGameIntegral/ControlerServlet" method="post">
+<form action="/matrixGameIntegral/StoneMoveServlet" method="post">
 <tr>
 <th colspan="5" id="userInfo" >
-  <p>User Name : <%= user.getName() %></p>
+  <p>Name  : <%= user.getName() %></p>
   <p>Point : <%= user.getPoint() %></p>
-  <p>Stage: 001</p>
+  <p>Sheet : 001</p>
 </th>
 </tr>
 <tr>
   <td>　</td>
   <td>　</td>
-  <td><button type="submit" name="cross" value="up">▲</button></td>
+  <td><button type="submit" name="stoneMove" value="up">▲</button></td>
   <td>　</td>
   <td>　</td>
 </tr>
 <tr>
   <td>　</td>
-  <td><button type="submit" name="cross" value="left">≪</button></td>
-  <td><button type="submit" name="cross" value="decide"><b>決定</b></button></td>
-  <td><button type="submit" name="cross" value="right">≫</button></td>
+  <td><button type="submit" name="stoneMove" value="left">≪</button></td>
+  <td><button type="submit" name="stoneMove" value="enter"><b>Enter</b></button></td>
+  <td><button type="submit" name="stoneMove" value="right">≫</button></td>
   <td>　</td>
 </tr>
 <tr>
   <td>　</td>
   <td>　</td>
-  <td><button type="submit" name="cross" value="down">▼</button></td>
+  <td><button type="submit" name="stoneMove" value="down">▼</button></td>
   <td>　</td>
   <td>　</td>
 </tr>
