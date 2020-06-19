@@ -43,7 +43,7 @@ table {
     background-color: lavenderblush;
     border-width: 2px;
     border-color: pink;
-    border-spacing: 3px;
+    border-spacing: 2px;
     border-radius: 10px;
     border-style: ridge;
 }
@@ -108,12 +108,25 @@ td#message{
 
 /* ==== Parts Decoration ==== */
 
-buttan {
+button {
     text-align: center;
     font-family:  "MS P明朝",serif;
-    font-size: medium;
+    font-style: italic;
+    font-size: x-large;
+    font-weight: bold;
+    color: deeppink;
+    text-shadow: thistle 1px 1px;
 }
 
-buttan#stone {
+button#move {
+	text-align: center;
+	font-size: large;
+	font-style: normal;
+	font-weight: bold;
+	color: royalblue;
 
+}
+
+button#stone {
+    vertical-align: middle;
 }
