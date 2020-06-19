@@ -52,27 +52,28 @@
 <!-- Stone Table -->
 <div id="under" align="center">
 <table class="stone" border="1">
-<tr >
-<form action="/matrixGameIntegral/StoneSelectServlet" method="post">
-  <td
-    style="border-width: 3px;
-    border-color: <%= stoneSelectColor.get(1) %> ">
-      <button id="stone" type="submit" name="stoneSelect" value="tri"
-      style="background-color: lavenderblush; border-style: none;">
-      <img src="image/triStoneX.png" width="70" height="70" border="0" alt="matrixGame_triStone">
-  </button>
+<tr>
+  <form action="/matrixGameIntegral/StoneSelectServlet" method="post">
+  <td style="border-width: 3px;
+      border-color: <%= stoneSelectColor.get(1) %> ">
+      <button id="stone" type="submit" name="stoneSelect" value="tri">
+          <img src="image/triStoneX.png" width="70" height="70" border="0"
+          alt="matrixGame_triStone" style="vertical-align: middle" >
+      </button>
+  </td>
   <td style="border-width: 3px; border-color: <%= stoneSelectColor.get(2) %>">
-    <button id="stone" type="submit" name="stoneSelect" value="twice"
-    style="background-color: lavenderblush; border-style: none">
-    <img src="image/twiceStone.png" width="35" height="70" border="0" alt="matrixGame_twiceStone">
-  </button>
+      <button id="stone" type="submit" name="stoneSelect" value="twice">
+        <img src="image/twiceStone.png" width="35" height="70" border="0"
+        alt="matrixGame_twiceStone" style="vertical-align: middle">
+      </button>
+  </td>
   <td style="border-width: 3px; border-color: <%= stoneSelectColor.get(3) %>">
-  <button id="stone" type="submit" name="stoneSelect" value="mono"
-    style="background-color: lavenderblush; border-style: none">
-    <img src="image/monoStone.png" width="35" height="35" border="0" align="center" alt="matrixGame_monoStone">
-  </button>
-</form>
-
+      <button id="stone" type="submit" name="stoneSelect" value="mono">
+        <img src="image/monoStone.png" width="35" height="35" border="0" align="center"
+        alt="matrixGame_monoStone" style="vertical-align: middle">
+      </button>
+  </td>
+  </form>
 </tr>
 </table>
 
@@ -113,7 +114,7 @@
     <button type="submit" name="select" value="1"
         style="
         border-style: none;
-        background-color: <%= color.get(1) %>">１</button>
+        background-color: <%= color.get(1) %>">　</button>
   </td>
   <td
     style="
@@ -123,7 +124,7 @@
     <button type="submit" name="select" value="2"
         style="
         border-style: none;
-        background-color: <%= color.get(2) %>">２</button>
+        background-color: <%= color.get(2) %>">　</button>
   </td>
   <td
     style="
@@ -133,7 +134,7 @@
     <button type="submit" name="select" value="3"
         style="
         border-style: none;
-        background-color: <%= color.get(3) %>">３</button>
+        background-color: <%= color.get(3) %>">　</button>
   </td>
   <td
     style="
@@ -143,7 +144,7 @@
     <button type="submit" name="select" value="4"
         style="
         border-style: none;
-        background-color: <%= color.get(4) %>">４</button>
+        background-color: <%= color.get(4) %>">　</button>
   </td>
   <td
     style="
@@ -153,7 +154,7 @@
     <button type="submit" name="select" value="5"
         style="
         border-style: none;
-        background-color: <%= color.get(5) %>">５</button>
+        background-color: <%= color.get(5) %>">　</button>
   </td>
 </tr>
 <tr class="Y2">
@@ -165,7 +166,7 @@
     <button type="submit" name="select" value="6"
         style="
         border-style: none;
-        background-color: <%= color.get(6) %>">６</button>
+        background-color: <%= color.get(6) %>">　</button>
   </td>
   <td
     style="
@@ -175,7 +176,7 @@
     <button type="submit" name="select" value="7"
         style="
         border-style: none;
-        background-color: <%= color.get(7) %>">７</button>
+        background-color: <%= color.get(7) %>">　</button>
   </td>
   <td
     style="
@@ -185,7 +186,7 @@
     <button type="submit" name="select" value="8"
         style="
         border-style: none;
-        background-color: <%= color.get(8) %>">８</button>
+        background-color: <%= color.get(8) %>">　</button>
   </td>
   <td
     style="
@@ -195,7 +196,7 @@
     <button type="submit" name="select" value="9"
         style="
         border-style: none;
-        background-color: <%= color.get(9) %>">９</button>
+        background-color: <%= color.get(9) %>">　</button>
   </td>
   <td
     style="
@@ -205,7 +206,7 @@
     <button type="submit" name="select" value="10"
         style="
         border-style: none;
-        background-color: <%= color.get(10) %>">10</button>
+        background-color: <%= color.get(10) %>">　</button>
   </td>
 </tr>
 <tr class="Y3">
@@ -217,7 +218,7 @@
     <button type="submit" name="select" value="11"
         style="
         border-style: none;
-        background-color: <%= color.get(11) %>">11</button>
+        background-color: <%= color.get(11) %>">　</button>
   </td>
   <td
     style="
@@ -227,7 +228,7 @@
     <button type="submit" name="select" value="12"
         style="
         border-style: none;
-        background-color: <%= color.get(12) %>">12</button>
+        background-color: <%= color.get(12) %>">　</button>
   </td>
   <td
     style="
@@ -237,7 +238,7 @@
     <button type="submit" name="select" value="13"
         style="
         border-style: none;
-        background-color: <%= color.get(13) %>">13</button>
+        background-color: <%= color.get(13) %>">　</button>
   </td>
   <td
     style="
@@ -247,7 +248,7 @@
     <button type="submit" name="select" value="14"
         style="
         border-style: none;
-        background-color: <%= color.get(14) %>">14</button>
+        background-color: <%= color.get(14) %>">　</button>
   </td>
   <td
     style="
@@ -257,7 +258,7 @@
     <button type="submit" name="select" value="15"
         style="
         border-style: none;
-        background-color: <%= color.get(15) %>">15</button>
+        background-color: <%= color.get(15) %>">　</button>
   </td>
 </tr>
 <tr class="Y4">
@@ -269,7 +270,7 @@
     <button type="submit" name="select" value="16"
         style="
         border-style: none;
-        background-color: <%= color.get(16) %>">16</button>
+        background-color: <%= color.get(16) %>">　</button>
   </td>
   <td
     style="
@@ -279,7 +280,7 @@
     <button type="submit" name="select" value="17"
         style="
         border-style: none;
-        background-color: <%= color.get(17) %>">17</button>
+        background-color: <%= color.get(17) %>">　</button>
   </td>
   <td
     style="
@@ -289,7 +290,7 @@
     <button type="submit" name="select" value="18"
         style="
         border-style: none;
-        background-color: <%= color.get(18) %>">18</button>
+        background-color: <%= color.get(18) %>">　</button>
   </td>
   <td
     style="
@@ -299,7 +300,7 @@
     <button type="submit" name="select" value="19"
         style="
         border-style: none;
-        background-color: <%= color.get(19) %>">19</button>
+        background-color: <%= color.get(19) %>">　</button>
   </td>
   <td
     style="
@@ -309,7 +310,7 @@
     <button type="submit" name="select" value="20"
         style="
         border-style: none;
-        background-color: <%= color.get(20) %>">20</button>
+        background-color: <%= color.get(20) %>">　</button>
   </td></tr>
 <tr class="Y5">
   <td
@@ -320,7 +321,7 @@
     <button type="submit" name="select" value="21"
         style="
         border-style: none;
-        background-color: <%= color.get(21) %>">21</button>
+        background-color: <%= color.get(21) %>">　</button>
   </td>
   <td
     style="
@@ -330,7 +331,7 @@
     <button type="submit" name="select" value="22"
         style="
         border-style: none;
-        background-color: <%= color.get(22) %>">22</button>
+        background-color: <%= color.get(22) %>">　</button>
   </td>
   <td
     style="
@@ -340,7 +341,7 @@
     <button type="submit" name="select" value="23"
         style="
         border-style: none;
-        background-color: <%= color.get(23) %>">23</button>
+        background-color: <%= color.get(23) %>">　</button>
   </td>
   <td
     style="
@@ -350,7 +351,7 @@
     <button type="submit" name="select" value="24"
         style="
         border-style: none;
-        background-color: <%= color.get(24) %>">24</button>
+        background-color: <%= color.get(24) %>">　</button>
   </td>
   <td
     style="
@@ -360,7 +361,7 @@
     <button type="submit" name="select" value="25"
         style="
         border-style: none;
-        background-color: <%= color.get(25) %>">25</button>
+        background-color: <%= color.get(25) %>">　</button>
   </td>
 </tr>
 </table>

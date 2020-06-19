@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import DAO.SaveDAO;
+import model.MatrixBeans;
+import model.SaveCalc;
 import model.SaveDateTime;
 import model.User;
 
@@ -26,6 +30,14 @@ public class SaveServlet extends HttpServlet {
       String message = "";
 
       switch(controle) {
+        case "Reverse":
+          message = "";
+        break;
+
+        case "Reset":
+          message = "このゲームをやり直しますか？";
+          break;
+
         case "Save":
           message = "セーブしますか？";
           break;
@@ -34,9 +46,7 @@ public class SaveServlet extends HttpServlet {
           message = "ログアウトしますか？";
           break;
 
-        case "Reset":
-          message = "このゲームをやり直しますか？";
-          break;
+
       }//switch
 
       request.setAttribute("message", message);
@@ -59,38 +69,65 @@ public class SaveServlet extends HttpServlet {
 
       HttpSession session = request.getSession();
       User user = (User) session.getAttribute("user");
-
+      MatrixBeans matrixDB = (MatrixBeans) session.getAttribute("matrixDB");
       String controle = (String) session.getAttribute("controle");
-
-      String saveDateTime = "";
 
       // ---- switch (controle) ----
       switch (controle) {
         case "Save":
           if (comfirm.equals("YES")) {
+              int puzzleId = user.getPuzzleId();
+              List<Integer> colorDB = matrixDB.getColorDB();
+
+              SaveCalc saveCalc = new SaveCalc();
+              int decimal = saveCalc.changeDecimal(colorDB);
+
               SaveDateTime sdt = new SaveDateTime();
-              saveDateTime = sdt.saveDateTime();
+              String saveDateTime = sdt.saveDateTime();
+
+              SaveDAO dao = new SaveDAO();
+              boolean isSave = dao.saveGame(puzzleId, decimal, saveDateTime);
+
+              if (isSave) {
+                String message = "セーブ完了";
+
+                request.setAttribute("message", message);
+
+                String path = "/matrix.jsp";
+                RequestDispatcher dis = request.getRequestDispatcher(path);
+                dis.forward(request, response);
+              }//if isSave
 
           } else if (comfirm.equals("NO")) {
-              ;
-          }
+              String message = "";
+              request.setAttribute("message", message);
+
+              String path = "/matrix.jsp";
+              RequestDispatcher dis = request.getRequestDispatcher(path);
+              dis.forward(request, response);
+          }//if comfirm
           break;
 
         case "Logout":
+          if (comfirm.equals("YES")) {
+            String path = "/matrixGameIntegral/LogoutServlet";
+            RequestDispatcher dis = request.getRequestDispatcher(path);
+            dis.forward(request, response);
+          }
           break;
 
         case "Reset":
+          if (comfirm.equals("YES")) {
+            String path = "/matrixGameIntegral/StartServlet";
+            RequestDispatcher dis = request.getRequestDispatcher(path);
+            dis.forward(request, response);
+          }
+          break;
+
+        case "Reverse":
           break;
 
       }//switch
-
-      //---- call method ----
-
-      //boolean isSave = SaveDAO.saveGame(matrixDB);
-
-      //if (isSave) {
-
-      //}
 
   }//doPost()
 
