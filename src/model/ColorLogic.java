@@ -49,12 +49,31 @@ public class ColorLogic {
   }//paintColor()
 
 
+  public List<String> stoneAreaPaint(List<Integer> stoneAreaDB){
+	  List<String> stoneArea = new ArrayList<>(32);
+	  stoneArea.add(0, "none");
+
+	  for (int i = 1; i <= 25; i++) {
+	       if (stoneAreaDB.get(i) == 1) {
+	         stoneArea.add("deeppink");
+
+	       } else if (stoneAreaDB.get(i) == 0) {
+	         stoneArea.add("mistyrose");
+
+	       }
+	     }//for
+
+	return stoneArea;
+
+  }//stoneArea()
+
+
   public List<String> stoneSelectPaint(String stoneSelect) {
     List<String> stoneSelectColor = new ArrayList<>();
-    stoneSelectColor.add("none");
-    stoneSelectColor.add("none");
-    stoneSelectColor.add("none");
-    stoneSelectColor.add("none");
+        stoneSelectColor.add("none");
+        stoneSelectColor.add("none");
+        stoneSelectColor.add("none");
+        stoneSelectColor.add("none");
 
     if (stoneSelect.equals("tri")) {
         stoneSelectColor.set(1,"hotpink");
