@@ -5,22 +5,15 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
-
-import model.MatrixBeans;
 
 public class SaveDAO {
   private final String JDBC_URL = "jdbc:mysql://localhost:3306/puzzle?characterEncoding=utf-8&serverTimezone=JST";
   private final String DB_USER = "root";
   private final String DB_PASS = "root";
 
-  public boolean saveGame(int puzzleId, int point, String saveDateTime) {
+  public boolean saveGame(int puzzleId, int decimal, String saveDateTime) {
     boolean isSave = false;
-    MatrixBeans matrixDB = new MatrixBeans();
-    List<Integer> colorDB = matrixDB.getColorDB();
 
-    //point機能は保留
-    //boolean isSavePoint = pointDAO(point);
     Connection conn = null;
 
     try {
@@ -32,12 +25,11 @@ public class SaveDAO {
         //SQL文を送る
         PreparedStatement pStmt = conn.prepareStatement(sql);
 
-        for (int i = 1; i <= 25; i++) {
             pStmt.setInt(1, puzzleId);
-            pStmt.setInt(2, i);
-            pStmt.setInt(3, colorDB.get(i));
+            pStmt.setInt(2, 0);
+            pStmt.setInt(3, decimal);
             pStmt.setString(4, saveDateTime);
-        }// for
+
 
         //SQL文を実行し結果を取得
         ResultSet rs = pStmt.executeQuery();
