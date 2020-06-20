@@ -90,7 +90,7 @@ public class SaveServlet extends HttpServlet {
 
               if (isSave) {
                 String message = "セーブ完了";
-                System.out.println(message);//松原
+                //System.out.println(message);//松原
 
                 request.setAttribute("message", message);
 
@@ -101,7 +101,8 @@ public class SaveServlet extends HttpServlet {
 
           } else if (comfirm.equals("NO")) {
               String message = "";
-              System.out.println(message);//松原
+              //System.out.println(message);//松原
+
               request.setAttribute("message", message);
 
               String path = "/matrix.jsp";
@@ -112,7 +113,7 @@ public class SaveServlet extends HttpServlet {
 
         case "Logout":
           if (comfirm.equals("YES")) {
-            String path = "/matrixGameIntegral/LogoutServlet";
+            String path = "/LogoutServlet";
             RequestDispatcher dis = request.getRequestDispatcher(path);
             dis.forward(request, response);
           }
@@ -120,7 +121,7 @@ public class SaveServlet extends HttpServlet {
 
         case "Reset":
           if (comfirm.equals("YES")) {
-            String path = "/matrixGameIntegral/StartServlet";
+            String path = "/StartServlet";
             RequestDispatcher dis = request.getRequestDispatcher(path);
             dis.forward(request, response);
           }
