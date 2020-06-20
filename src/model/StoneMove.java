@@ -4,10 +4,12 @@ import java.util.List;
 
 public class StoneMove {
 
-    public List<Integer> judgeStoneMove(String stoneMove, List<Integer> selectList) {
+    public List<Integer> stoneMove(String stoneMove,
+                                    List<Integer> stoneAreaDB,
+                                    List<Integer> selectList) {
 
         for (int select : selectList) {
-            selectList.set(select, 0);
+            stoneAreaDB.set(select, 0);
 
             // ---- MKM stoneMove Logic ----
             if(stoneMove.equals("up")) {
@@ -22,12 +24,13 @@ public class StoneMove {
 
             }
 
-            selectList.set(select, 1);
+            stoneAreaDB.set(select, 1);
 
         }//for
 
-        return selectList;
+        selectList.clear();
+        return stoneAreaDB;
 
-    }//judgeStoneMove()
+    }//StoneMove()
 
 }//class
