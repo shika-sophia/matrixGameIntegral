@@ -3,7 +3,6 @@ package DAO;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class SaveDAO {
@@ -12,9 +11,12 @@ public class SaveDAO {
   private final String DB_PASS = "root";
 
   public boolean saveGame(int puzzleId, int decimal, String saveDateTime) {
-    boolean isSave = false;
 
     Connection conn = null;
+
+    //System.out.println(puzzleId);//ここまでOK 松原
+    //System.out.println(decimal);//ここまでOK 松原
+    //System.out.println(saveDateTime);//ここまでOK 松原
 
     try {
         conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS);
@@ -30,12 +32,12 @@ public class SaveDAO {
             pStmt.setInt(3, decimal);
             pStmt.setString(4, saveDateTime);
 
-
         //SQL文を実行し結果を取得
-        ResultSet rs = pStmt.executeQuery();
+        int rs = pStmt.executeUpdate();
 
-        isSave = true;
-        return isSave;
+        if(rs != 1) {
+        	return false;
+        }
 
     } catch (SQLException e) {
         e.printStackTrace();
@@ -50,6 +52,7 @@ public class SaveDAO {
             return false;
         }
     }//finally
+    return true;
 
   }//saveGame()
 }//class
