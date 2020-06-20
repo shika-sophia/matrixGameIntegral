@@ -12,7 +12,7 @@ public class SaveDateTime {
     String saveDateTime = ldt.format(DateTimeFormatter.
         ofPattern("Y年L月d日(E) k時m分s秒"));
 
-    //System.out.println(saveDateTime);
+    //System.out.println(saveDateTime); //松原
 
     return saveDateTime;
   }//saveDateTime() or main()
