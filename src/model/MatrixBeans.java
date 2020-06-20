@@ -24,7 +24,7 @@ public class MatrixBeans implements Serializable {
   private String saveDateTime;
 
   private List<Integer> stoneAreaDB;
-  private int select;
+  private List<Integer> selectList;
   private String stoneSelect;
 
 
@@ -73,12 +73,12 @@ public class MatrixBeans implements Serializable {
       this.stoneAreaDB = stoneAreaDB;
   }
 
-  public int getSelect() {
-      return select;
+  public List<Integer> getSelectList() {
+      return selectList;
   }
 
-  public void setSelect(int select) {
-      this.select = select;
+  public void setSelectList(List<Integer> selectList) {
+      this.selectList = selectList;
   }
 
   public String getStoneSelect() {
