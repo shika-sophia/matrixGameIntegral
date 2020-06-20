@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.CanStone;
 import model.MatrixBeans;
-import model.StoneLogic;
 import model.StoneMove;
 
 
@@ -25,54 +24,47 @@ public class StoneMoveServlet extends HttpServlet {
   protected void doGet(HttpServletRequest request,HttpServletResponse response)
     throws ServletException,IOException {
 
+  }//doGet()
+
+
+  protected void doPost(HttpServletRequest request,HttpServletResponse response)
+    throws ServletException,IOException {
+
+    //---- get parameter ----
     request.setCharacterEncoding("UTF-8");
-    //stoneMoveの取得
     String stoneMove=request.getParameter("stoneMove");
 
     ServletContext application = this.getServletContext();
     MatrixBeans matrixDB = (MatrixBeans) application.getAttribute("matrixDB");
 
-    //MKM stb.setStoneAreaDB(staDB);ここ必要か？→//shika いやsetじゃなくgetだな
-
+    //---- get from matrixDB ----
     List<Integer> stoneAreaDB = matrixDB.getStoneAreaDB();
     List<Integer> selectList = matrixDB.getSelectList();
     String stoneSelect = matrixDB.getStoneSelect();
 
+    //---- judge stone Range ----
     CanStone cs = new CanStone();
-    boolean canRange = cs.canRange(stoneSelect ,stoneAreaDB);
+    boolean canRange = cs.canRange(stoneSelect, selectList);
 
-    StoneMove stm = new StoneMove();
-    selectList = stm.judgeStoneMove(stoneMove, selectList);
-    matrixDB.setSelectList(selectList);
+      if (canRange) {
+         StoneMove stm = new StoneMove();
+         stoneAreaDB = stm.stoneMove(stoneMove, stoneAreaDB, selectList);
 
+         matrixDB.setStoneAreaDB(stoneAreaDB);
+         application.setAttribute("stoneAreaDB",stoneAreaDB);
 
-        //StoneLogicの呼び出し,stoneLogic作成
-        StoneLogic stoneLogic=new StoneLogic();
-        //StoneLogicを起動、stoneAreaDB
-        //List<Integer> stoneAreaDB=stoneLogic.execute(stb);
+          //matrix.jspへフォワード
+            String path = "/matrix.jsp";
+            RequestDispatcher dis = request.getRequestDispatcher(path);
+            dis.forward(request, response);
 
-        /*//StoneRoll呼び出し
-        StoneRoll str= new StoneRoll();
-        //実行
-         stoneAreaDB =str.execute(stb);*/
+        } //else {
 
-        //stoneAreaDBをアプリケーションスコープに取得
-        ServletContext application1= request.getServletContext();
-        //stoneAreaDBをアプリケーションスコープに保存しなおす
-        application1.setAttribute("stoneAreaDB",stoneAreaDB);
+            //matrix.jspへフォワード
+            String path = "/matrix.jsp";
+            RequestDispatcher dis = request.getRequestDispatcher(path);
+            dis.forward(request, response);
 
-        //matrix.jspへフォワード
-        String path = "/matrix.jsp";
-        RequestDispatcher dis = request.getRequestDispatcher(path);
-        dis.forward(request, response);
-
-    }//doGet()
-
-
-    protected void doPost(HttpServletRequest request,
-            HttpServletResponse response) throws ServletException,
-    IOException {
-
-    }//doPost()
+  }//doPost()
 
 }//class

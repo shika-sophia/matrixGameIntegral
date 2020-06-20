@@ -35,7 +35,6 @@ public class StoneSelectServlet extends HttpServlet {
     MatrixBeans matrixDB = (MatrixBeans) session.getAttribute("matrixDB");
 
     List<Integer> selectList = new ArrayList<>(32);
-    selectList.add(0, 0);
 
     //---- stoneSelect switch----
     switch (stoneSelect) {
@@ -70,7 +69,7 @@ public class StoneSelectServlet extends HttpServlet {
 
     //---- input select to 'stonAreaDB' ----
     for (int select : selectList) {
-          stoneAreaDB.set(select, 1);
+        stoneAreaDB.set(select, 1);
     }
 
     //---- input to MatrixBeans ----
