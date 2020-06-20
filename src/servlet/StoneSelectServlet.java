@@ -69,12 +69,14 @@ public class StoneSelectServlet extends HttpServlet {
     }//for
 
     //---- input select to 'stonAreaDB' ----
-     for (int select : selectList) {
+    for (int select : selectList) {
           stoneAreaDB.set(select, 1);
-     }
+    }
 
-     //---- input stoneAreaDB to MatrixBeans ----
-     matrixDB.setStoneAreaDB(stoneAreaDB);
+    //---- input to MatrixBeans ----
+    matrixDB.setStoneAreaDB(stoneAreaDB);
+    matrixDB.setSelectList(selectList);
+    matrixDB.setStoneSelect(stoneSelect);
 
      //---- paint stoneArea ----
      ColorLogic colorLogic = new ColorLogic();
