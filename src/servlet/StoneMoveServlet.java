@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -10,9 +11,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.CanStone;
+import model.ColorLogic;
 import model.MatrixBeans;
+import model.Melt;
 import model.StoneMove;
 
 
@@ -32,38 +36,76 @@ public class StoneMoveServlet extends HttpServlet {
 
     //---- get parameter ----
     request.setCharacterEncoding("UTF-8");
-    String stoneMove=request.getParameter("stoneMove");
+    String stoneMove = request.getParameter("stoneMove");
 
+    HttpSession session = request.getSession();
+    MatrixBeans matrixDB = (MatrixBeans) session.getAttribute("matrixDB");
+
+    //---- class ----
     ServletContext application = this.getServletContext();
-    MatrixBeans matrixDB = (MatrixBeans) application.getAttribute("matrixDB");
+    CanStone canStone = new CanStone();
 
     //---- get from matrixDB ----
+    List<Integer> colorDB = matrixDB.getColorDB();
     List<Integer> stoneAreaDB = matrixDB.getStoneAreaDB();
     List<Integer> selectList = matrixDB.getSelectList();
     String stoneSelect = matrixDB.getStoneSelect();
 
+    ColorLogic colorLogic = new ColorLogic();
+    List<String> color = new ArrayList<>(32);
+
+    //======= enter section ======
+    boolean canBlock = canStone.canBlock(matrixDB);
+
+    if (canBlock) {
+      if (stoneMove.equals("enter")) {
+        for(int select : selectList) {
+            colorDB = colorLogic.changeColor(matrixDB, select, colorDB);
+        }//for select
+
+        Melt melt = new Melt();
+        colorDB = melt.meltStone(matrixDB);
+
+        color = colorLogic.paintColor(colorDB);
+        application.setAttribute("color", color);
+
+      }//if enter
+    }//if canBlock
+
+    // ====== move section ======
     //---- judge stone Range ----
-    CanStone cs = new CanStone();
-    boolean canRange = cs.canRange(stoneSelect, selectList);
+    boolean canRange = canStone.canRange(stoneSelect, selectList);
 
-      if (canRange) {
-         StoneMove stm = new StoneMove();
-         stoneAreaDB = stm.stoneMove(stoneMove, stoneAreaDB, selectList);
+    //---- case canRange ----
+      //if (canRange) {
+        //---- call StoneMove() ----
+        StoneMove stm = new StoneMove();
+        stoneAreaDB = stm.stoneMove(stoneMove, selectList, stoneAreaDB, matrixDB);
 
-         matrixDB.setStoneAreaDB(stoneAreaDB);
-         application.setAttribute("stoneAreaDB",stoneAreaDB);
+        matrixDB.setStoneAreaDB(stoneAreaDB);
+        session.setAttribute("matrixDB", matrixDB);
 
-          //matrix.jspへフォワード
-            String path = "/matrix.jsp";
-            RequestDispatcher dis = request.getRequestDispatcher(path);
-            dis.forward(request, response);
+        //---- paint stoneArea ----
 
-        } //else {
+        List<String> stoneArea = colorLogic.stoneAreaPaint(stoneAreaDB);
 
-            //matrix.jspへフォワード
-            String path = "/matrix.jsp";
-            RequestDispatcher dis = request.getRequestDispatcher(path);
-            dis.forward(request, response);
+        //---- application scope ----
+
+        application.setAttribute("stoneArea",stoneArea);
+
+        String message = "";
+        request.setAttribute("message", message);
+
+      //} else {
+        //String message = "移動できません";
+        //request.setAttribute("message", message);
+
+      //}
+
+      //matrix.jspへフォワード
+      String path = "/matrix.jsp";
+      RequestDispatcher dis = request.getRequestDispatcher(path);
+      dis.forward(request, response);
 
   }//doPost()
 

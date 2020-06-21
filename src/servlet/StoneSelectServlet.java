@@ -64,7 +64,7 @@ public class StoneSelectServlet extends HttpServlet {
 
     //---- initialize 'stoneAreaDB' ----
     for(int i = 1; i <= 25; i++) {
-        stoneAreaDB.add(0);
+        stoneAreaDB.add(i, 0);
     }//for
 
     //---- input select to 'stonAreaDB' ----
@@ -76,6 +76,8 @@ public class StoneSelectServlet extends HttpServlet {
     matrixDB.setStoneAreaDB(stoneAreaDB);
     matrixDB.setSelectList(selectList);
     matrixDB.setStoneSelect(stoneSelect);
+
+    session.setAttribute("matrixDB", matrixDB);
 
      //---- paint stoneArea ----
      ColorLogic colorLogic = new ColorLogic();
