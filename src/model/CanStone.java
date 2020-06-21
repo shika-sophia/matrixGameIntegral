@@ -12,7 +12,7 @@ public class CanStone {
 
         for (int select : selectList) {
 
-            if(stoneSelect.equals("tri")) {//if①
+            if(stoneSelect.equals("tri")) {
                 if(select==1 || select==2 || select==3 || select==4
                  || select==5 || select==10 || select==15 || select==20
                  || select==25){
@@ -20,7 +20,7 @@ public class CanStone {
                    canRange = false;
                 } //if①
 
-            }else if(stoneSelect=="twice") {//if②
+            }else if(stoneSelect=="twice") {
 
                 if(select==1 || select==2 || select==3 || select==4 || select==5){
 
