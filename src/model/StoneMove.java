@@ -13,7 +13,9 @@ public class StoneMove {
         for (int select : selectList) {
 
             stoneAreaDB.set(select, 0);
+            }
 
+        for (int select : selectList) {
             // ---- stoneMove Logic by MKM----
             if(stoneMove.equals("up")) {
                 select -= 5;
