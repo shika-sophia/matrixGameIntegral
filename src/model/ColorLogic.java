@@ -49,7 +49,7 @@ public class ColorLogic {
   }//paintColor()
 
 
-  public List<String> stoneAreaPaint(List<Integer> stoneAreaDB){
+  public List<String> paintStoneArea(List<Integer> stoneAreaDB){
 	  List<String> stoneArea = new ArrayList<>(32);
 	  stoneArea.add(0, "none");
 
@@ -68,7 +68,7 @@ public class ColorLogic {
   }//stoneArea()
 
 
-  public List<String> stoneSelectPaint(String stoneSelect) {
+  public List<String> paintStoneSelect(String stoneSelect) {
     List<String> stoneSelectColor = new ArrayList<>();
         stoneSelectColor.add("none");
         stoneSelectColor.add("none");
