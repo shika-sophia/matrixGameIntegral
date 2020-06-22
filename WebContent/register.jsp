@@ -39,7 +39,7 @@
   </th></tr>
 <tr><td>
 <form action="/matrixGameIntegral/RegisterServlet" method="post">
-	<p>アカウントID：<input type="text" name="	accountId"></p>
+	<p>アカウントID：<input type="text" name="accountId"></p>
 	<p>ユーザー名　：<input type="text" name="name"></p>
 	<p>パスワード　：<input type="password" name="pass"></p>
 <br>

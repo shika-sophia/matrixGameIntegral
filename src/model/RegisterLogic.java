@@ -6,10 +6,17 @@ import DAO.RegisterDAO;
 
 public class RegisterLogic {
 
-	public boolean execute(User user) {
+	public void execute(User user) {
 
 		RegisterDAO dao = new RegisterDAO();
-        List<String> accountDB = dao.selectRegister();
+
+		dao.insertRegister(user);
+	}
+
+	public boolean existRegister(User user) {
+
+		RegisterDAO dao = new RegisterDAO();
+        List<String> accountDB = dao.selectRegister(user);
 
         boolean existAccountId = existAccoutId(user, accountDB);
 

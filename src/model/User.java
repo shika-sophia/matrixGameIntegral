@@ -20,16 +20,6 @@ public class User implements Serializable{
 
     }
 
-    public User(String name,String pass,String accountId, int puzzleId, int point) {
-
-        this.name=name;
-        this.pass=pass;
-        this.accountId=accountId;
-        this.puzzleId=puzzleId;
-        this.point=point;
-
-    }
-
     public String getName() {
         return name;
     }

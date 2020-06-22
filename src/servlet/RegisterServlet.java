@@ -43,7 +43,7 @@ public class RegisterServlet extends HttpServlet {
 
 			//RegisterLogicのインスタンス化
 			RegisterLogic rl = new RegisterLogic();
-			boolean existAccountId = rl.execute(user);
+			boolean existAccountId = rl.existRegister(user);
 
 			String message = "";
 
