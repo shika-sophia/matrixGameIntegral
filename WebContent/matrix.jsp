@@ -14,7 +14,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import = "model.User" %>
-<%@ page import = "model.MatrixBeans"  %>
 <%@ page import = "java.util.List" %>
 <%@ page import = "java.util.ArrayList" %>
 
@@ -23,6 +22,8 @@
 <% List<String> stoneSelectColor = (List<String>) application.getAttribute("stoneSelectColor"); %>
 
 <% String message = (String) request.getAttribute("message"); %>
+<% //boolean flagYesNo = (boolean) request.getAttribute("flagYesNo"); %>
+
 <% User user = (User) session.getAttribute("user"); %>
 
 
@@ -84,6 +85,7 @@
 <form action="/matrixGameIntegral/SaveServlet" method="post">
 <% if (message != null && !(message.equals(""))) {%>
   <p><%= message %></p>
+<% //} else if (flagYesNo == true){ %>
 　<input type="submit" name="comfirm" value="YES">　<input type="submit" name="comfirm" value="NO">
 <% } else if (message == null){
    ;} %>
