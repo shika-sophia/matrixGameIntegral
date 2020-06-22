@@ -17,7 +17,7 @@ public class RegisterDAO {
 	private final String DB_USER = "root";
 	private final String DB_PASS = "root";
 
-	public List<String> selectRegister() {
+	public List<String> selectRegister(User user) {
 		Connection conn = null;
 		List<String> accountDB = new ArrayList<>();
 
@@ -25,10 +25,14 @@ public class RegisterDAO {
 			conn = DriverManager.getConnection(JDBC_URL,DB_USER,DB_PASS);
 
 			//SELECT文の準備
-			String sql = "SELECT accountId FROM user";
+			String sql = "SELECT * FROM user WHERE = name = ? AND accountId = ? AND pass = ?";
 
 			//SQL文を送る
 			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setString(1,user.getName());
+			pStmt.setString(2,user.getAccountId());
+			pStmt.setString(3,user.getPass());
+
 
 			//SQL文を実行して結果を取得する
 			ResultSet rs = pStmt.executeQuery();
@@ -64,17 +68,15 @@ public class RegisterDAO {
 			conn =DriverManager.getConnection(JDBC_URL,DB_USER,DB_PASS);
 
 			//SQL文の準備
-			String sql = "insert into user (puzzleId, name, accountId, pass, point) values(?,?,?,?,?)";
+			String sql = "insert into user (name, accountId, pass) values(?,?,?)";
 
 			//SQL文を送る
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			//SQL文に情報を渡す
-			pStmt.setInt(1, user.getPuzzleId());
-			pStmt.setString(2, user.getName());
-			pStmt.setString(3, user.getAccountId());
-			pStmt.setString(4, user.getPass());
-			pStmt.setInt(5, user.getPoint());
+			pStmt.setString(1, user.getName());
+			pStmt.setString(2, user.getAccountId());
+			pStmt.setString(3, user.getPass());
 
 			//SQL文を実行して結果を取得する
 			int rs = pStmt.executeUpdate();
@@ -97,4 +99,6 @@ public class RegisterDAO {
 		return true;
 
 	}//insertRegister()
+
+
 }//class
