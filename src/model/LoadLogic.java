@@ -8,16 +8,15 @@ import DAO.LoadDAO;
 public class LoadLogic {
   public MatrixBeans loadSetting(User user) {
 
-	  int puzzleId = user.getPuzzleId();
+      int puzzleId = user.getPuzzleId();
 
-	  MatrixBeans matrixDB = new MatrixBeans();
-	  List<Integer> colorDB = new ArrayList<>(32);
+      MatrixBeans matrixDB = new MatrixBeans();
+      List<Integer> colorDB = new ArrayList<>(32);
 
-	  LoadDAO dao = new LoadDAO();
-	  matrixDB = dao.loadData(puzzleId, colorDB, matrixDB);
+      LoadDAO dao = new LoadDAO();
+      matrixDB = dao.loadData(puzzleId, colorDB, matrixDB);
 
-
-	  return matrixDB;
-  }//existData()
+      return matrixDB;
+  }//loadSetting()
 
 }//class
