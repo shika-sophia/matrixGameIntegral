@@ -33,7 +33,7 @@
   <th style="text-align: center; font-size: large;">
 <i>＊ Game Choice ＊　　</i>
   </th></tr>
-<tr><td style="text-align: center; vertical-align: top">
+<tr><td style="text-align: left; vertical-align: top">
 <form action= "/matrixGameIntegral/StartServlet" method="post">
 <% if(saveDateTime != null) {%>
 <p><input type="submit" name="choiceGame" value="LoadGame">　Saveデータ：<%= name %>さん <%= saveDateTime %></p>
