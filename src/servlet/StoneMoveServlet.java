@@ -87,7 +87,7 @@ public class StoneMoveServlet extends HttpServlet {
 
         //---- paint stoneArea ----
 
-        List<String> stoneArea = colorLogic.stoneAreaPaint(stoneAreaDB);
+        List<String> stoneArea = colorLogic.paintStoneArea(stoneAreaDB);
 
         //---- application scope ----
 

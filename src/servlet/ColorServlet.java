@@ -83,7 +83,7 @@ public class ColorServlet extends HttpServlet {
 
         String stoneSelect = "tri";
 
-        List<String> stoneSelectColor = colorLogic.stoneSelectPaint(stoneSelect);
+        List<String> stoneSelectColor = colorLogic.paintStoneSelect(stoneSelect);
 
 
 

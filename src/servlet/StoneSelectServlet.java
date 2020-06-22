@@ -81,8 +81,8 @@ public class StoneSelectServlet extends HttpServlet {
 
      //---- paint stoneArea ----
      ColorLogic colorLogic = new ColorLogic();
-     List<String> stoneArea = colorLogic.stoneAreaPaint(stoneAreaDB);
-     List<String> stoneSelectColor = colorLogic.stoneSelectPaint(stoneSelect);
+     List<String> stoneArea = colorLogic.paintStoneArea(stoneAreaDB);
+     List<String> stoneSelectColor = colorLogic.paintStoneSelect(stoneSelect);
 
      //---- application scope  ----
      ServletContext application = request.getServletContext();
