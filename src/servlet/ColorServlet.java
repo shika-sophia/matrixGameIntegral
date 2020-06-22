@@ -29,11 +29,11 @@ public class ColorServlet extends HttpServlet {
 
         // ###### Test Parts ######
         User user = new User();
-        user.setName("shika");
-        user.setPass("shika");
-        user.setAccountId("shika");
+        user.setName("Sample");
+        user.setPass("Sample");
+        user.setAccountId("Sample");
         user.setPoint(10000);
-        user.setPuzzleId(99);
+        user.setPuzzleId(777);
 
         HttpSession session = request.getSession();
         session.setAttribute("user", user);
@@ -69,7 +69,7 @@ public class ColorServlet extends HttpServlet {
         }//for
 
         //---- 初期stoneAreaを仮に定数生成 ----
-        int[] stoneAreaDB = {9,0,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+        int[] stoneAreaDB = {9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
         List<String> stoneArea = new ArrayList<>(30);
         stoneArea.add(0, "none");
 
@@ -85,8 +85,6 @@ public class ColorServlet extends HttpServlet {
 
         List<String> stoneSelectColor = colorLogic.paintStoneSelect(stoneSelect);
 
-
-
         color = colorLogic.paintColor(colorDB);
 
         SaveDateTime sdt = new SaveDateTime();
@@ -97,12 +95,15 @@ public class ColorServlet extends HttpServlet {
         matrixDB.setPuzzleId(puzzleId);
         matrixDB.setSaveDateTime(saveDateTime);
 
+        //---- request/ session / application scope ----
+        String message = "";
+        boolean flagYesNo = false;
+        request.setAttribute("message", message);
+        request.setAttribute("flagYesNo", flagYesNo);
+
         //HttpSession session = request.getSession();
         //session.setAttribute("user", user);
         session.setAttribute("matrixDB", matrixDB);
-
-        String message = "";
-        request.setAttribute("message", message);
 
         ServletContext application = request.getServletContext();
         application.setAttribute("color", color);
@@ -114,7 +115,7 @@ public class ColorServlet extends HttpServlet {
         dis.forward(request, response);
     }//doGet
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //---- get select ----
         request.setCharacterEncoding("UTF-8");
         int select = Integer.parseInt(request.getParameter("select"));

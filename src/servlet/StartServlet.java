@@ -27,8 +27,8 @@ public class StartServlet extends HttpServlet {
   protected void doGet(HttpServletRequest request,HttpServletResponse response)
     throws ServletException, IOException {
 
-	// ###### Test Parts ######
-	// ====== make User Beans for Test Demo======
+    // ###### Test Parts ######
+    // ====== make User Beans for Test Demo======
     User user = new User();
     user.setName("sample");
     user.setPass("sample");
@@ -52,14 +52,14 @@ public class StartServlet extends HttpServlet {
 
     //choice.jspへフォワード
     String path = "choiceGame.jsp";
-	RequestDispatcher dis = request.getRequestDispatcher(path);
-	dis.forward(request, response);
+    RequestDispatcher dis = request.getRequestDispatcher(path);
+    dis.forward(request, response);
 
-	}//doGet()
+    }//doGet()
 
 
   protected void doPost(HttpServletRequest request,HttpServletResponse response)
-	throws ServletException, IOException {
+    throws ServletException, IOException {
       // ---- get parameter ----
       request.setCharacterEncoding("UTF-8");
       String choiceGame = request.getParameter("choiceGame");
@@ -73,7 +73,7 @@ public class StartServlet extends HttpServlet {
       switch (choiceGame) {
         case "LoadGame":
 
-    	  break;
+          break;
 
         case "NewGame":
           NewGame newGame = new NewGame();
@@ -93,8 +93,7 @@ public class StartServlet extends HttpServlet {
       List<String> stoneArea = colorLogic.paintStoneArea(stoneAreaDB);
       List<String> stoneSelectColor = colorLogic.paintStoneSelect(stoneSelect);
 
-	  // ---- session scope & applicaton scope ----
-
+      // ---- set session / applicaton scope ----
       session.setAttribute("matrixDB", matrixDB);
 
       ServletContext application = request.getServletContext();
@@ -104,9 +103,9 @@ public class StartServlet extends HttpServlet {
 
       //matrix.jspへフォワード
       String path = "matrix.jsp";
-  	  RequestDispatcher dis = request.getRequestDispatcher(path);
-  	  dis.forward(request, response);
+        RequestDispatcher dis = request.getRequestDispatcher(path);
+        dis.forward(request, response);
 
-	}//post
+    }//post
 
 }
