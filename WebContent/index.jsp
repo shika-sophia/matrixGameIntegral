@@ -25,9 +25,9 @@
   </th></tr>
 <tr><td>
 	<form action="/matrixGameIntegral/LoginServlet" method="post">
-		<p>ユーザー名　：<input type="text" name="name"></p>
-		<p>パスワード　：<input type="password" name="pass"></p>
-		<p>アカウントID：<input type="text" name="accountId"></p>
+		<p>ユーザー名　：<input type="text" name="name" required></p>
+		<p>パスワード　：<input type="password" name="pass" required></p>
+		<p>アカウントID：<input type="text" name="accountId" required></p>
 
 		<p class="buttan"><input type="submit" value="ログイン">　</p>
 	</form>
