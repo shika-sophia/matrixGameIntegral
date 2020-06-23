@@ -24,7 +24,7 @@ public class LoadDAO {
             conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS);
 
             //セレクト文の準備
-            String sql = "select color, saveDateTime from matrix where puzzleId = ?";
+            String sql = "select color, max(saveDateTime) from matrix where puzzleId = ?";
 
             //SQL文を送る
             PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -39,7 +39,7 @@ public class LoadDAO {
 
             while (rs.next()) {
                 decimal = rs.getInt("color");
-                saveDateTime = rs.getString("saveDateTime");
+                saveDateTime = rs.getString("max(saveDateTime)");
             }
 
             SaveCalc saveCalc = new SaveCalc();
@@ -49,7 +49,6 @@ public class LoadDAO {
             matrixDB.setPuzzleId(puzzleId);
             matrixDB.setColorDB(colorDB);
             matrixDB.setSaveDateTime(saveDateTime);
-
 
         } catch (SQLException e) {
             e.printStackTrace();
