@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="model.User" %>
 <%
-User user = (User) session.getAttribute("User");
+User user = (User) session.getAttribute("user");
 %>
 <!-- Userのセッションスコープを獲得 -->
 <!DOCTYPE html>
@@ -29,9 +29,9 @@ User user = (User) session.getAttribute("User");
 <i>＊ 登録内容確認 ＊　　</i>
   </th></tr>
 <tr><td>
-  <p>アカウントID：<%= user.getAccountId() %></p>
   <p>ユーザー名　：<%= user.getName() %></p>
   <p>パスワード　：<%= user.getPass() %></p>
+  <p>アカウントID：<%= user.getAccountId() %></p>
 <br>
 <br>
 <p>上記の内容で登録しますか？</p>
