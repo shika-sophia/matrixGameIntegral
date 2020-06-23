@@ -85,7 +85,7 @@ public class StartServlet extends HttpServlet {
       List<Integer> colorDB = matrixDB.getColorDB();
       List<Integer> stoneAreaDB = matrixDB.getStoneAreaDB();
 
-      String stoneSelect = "tri";
+      String stoneSelect = "";
 
       // ---- call paint method ----
       ColorLogic colorLogic = new ColorLogic();
