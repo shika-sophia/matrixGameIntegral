@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% String message = (String) request.getAttribute("message"); %>
 
 <!DOCTYPE html>
 
@@ -27,9 +26,6 @@
 <hr color="white" size="5">
 </div>
 <br>
-<% if (message != null) {%>
-<p class = "message"><%= message %></p>
-<% } else if (message == null){  } %>
 <br>
 <div id="index" align="center">
 <table class="index">
@@ -39,9 +35,9 @@
   </th></tr>
 <tr><td>
 <form action="/matrixGameIntegral/RegisterServlet" method="post">
-	<p>ユーザー名　：<input type="text" name="name"></p>
-	<p>パスワード　：<input type="password" name="pass"></p>
-	<p>アカウントID：<input type="text" name="accountId"></p>
+	<p>ユーザー名　：<input type="text" name="name" required></p>
+	<p>パスワード　：<input type="password" name="pass" required></p>
+	<p>アカウントID：<input type="text" name="accountId" required></p>
 <br>
 	<p class="buttan"><input type="submit" value="確認">　　</p>
 </form>
