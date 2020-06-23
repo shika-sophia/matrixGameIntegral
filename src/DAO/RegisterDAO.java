@@ -25,7 +25,7 @@ public class RegisterDAO {
 			conn = DriverManager.getConnection(JDBC_URL,DB_USER,DB_PASS);
 
 			//SELECT文の準備
-			String sql = "SELECT * FROM user WHERE = name = ? AND accountId = ? AND pass = ?";
+			String sql = "SELECT * FROM user WHERE name = ? AND accountId = ? AND pass = ?";
 
 			//SQL文を送る
 			PreparedStatement pStmt = conn.prepareStatement(sql);
