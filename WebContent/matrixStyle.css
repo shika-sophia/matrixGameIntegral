@@ -17,6 +17,11 @@ h1 {
     font-size: 24px
 }
 /* ==== div ==== */
+div#while{
+	width: 100%;
+	margin: auto 0;
+}
+
 div#upper{
     align-content: center;
     width: 1000px;

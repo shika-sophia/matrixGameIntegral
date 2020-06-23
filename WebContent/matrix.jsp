@@ -40,7 +40,7 @@
 
 <link rel="stylesheet" href="matrixStyle.css">
 </head>
-
+<div id="while">
 <body>
 <!-- Upper Section -->
 <div id="upper">
@@ -411,6 +411,6 @@
 </table>
 
 </div><!-- class="main" 終了 -->
-
+</div><!-- id = "while" -->
 </body>
 </html>
