@@ -27,7 +27,7 @@ public class RegisterLogic {
     private boolean existAccoutId(User user, List<String> accountDB) {
     	boolean existAccountId = false;
 
-		String accountId = user.getAccountId();
+    	String accountId = user.getAccountId();
 
 		for(String str : accountDB) {
 		  if (accountId.equals(str)) {
