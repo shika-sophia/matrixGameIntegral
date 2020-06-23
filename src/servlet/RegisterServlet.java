@@ -48,10 +48,12 @@ public class RegisterServlet extends HttpServlet {
 			String message = "";
 
 			if (existAccountId) {
+
 				message = "そのアカウントＩＤはすでに使われています";
 				request.setAttribute("message", message);
+				request.setAttribute("existAccountId",existAccountId);
 
-				String path = "/matrixGameIntegral/RegisterServlet";
+				String path = "/registerDone.jsp";
 				RequestDispatcher dis = request.getRequestDispatcher(path);
 				dis.forward(request, response);
 			} else {
