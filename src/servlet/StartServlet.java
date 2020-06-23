@@ -27,21 +27,8 @@ public class StartServlet extends HttpServlet {
   protected void doGet(HttpServletRequest request,HttpServletResponse response)
     throws ServletException, IOException {
 
-    // ###### Test Parts ######
-    // ====== make User Beans for Test Demo======
-    User user = new User();
-    user.setName("sample");
-    user.setPass("sample");
-    user.setAccountId("sample");
-    user.setPoint(10000);
-    user.setPuzzleId(999);
-
     HttpSession session = request.getSession();
-    session.setAttribute("user", user);
-
-    //###### 実装 Parts ######
-    //HttpSession session = request.getSession();
-    session.getAttribute("user");
+    User user = (User) session.getAttribute("user");
 
     // ====== choice Load or NewGame======
     LoadLogic loadLogic = new LoadLogic();
@@ -70,14 +57,19 @@ public class StartServlet extends HttpServlet {
       MatrixBeans matrixDB = (MatrixBeans) session.getAttribute("matrixDB");
 
       // ---- switch LoadGame or NewGame ----
+      NewGame newGame = new NewGame();
+
       switch (choiceGame) {
         case "LoadGame":
-
+          LoadLogic loadLogic = new LoadLogic();
+          matrixDB = loadLogic.loadSetting(user);
+          matrixDB = newGame.newStoneAreaDB(matrixDB);
           break;
 
         case "NewGame":
-          NewGame newGame = new NewGame();
+
           matrixDB = newGame.newGameSetting(matrixDB);
+
           break;
       }//switch()
 
