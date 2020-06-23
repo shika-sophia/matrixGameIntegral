@@ -90,6 +90,10 @@ public class ColorLogic {
         stoneSelectColor.set(2,"mistyrose");
         stoneSelectColor.set(3,"hotpink");
 
+    } else {
+        stoneSelectColor.set(1,"mistyrose");
+        stoneSelectColor.set(2,"mistyrose");
+        stoneSelectColor.set(3,"mistyrose");
     }
 
     return stoneSelectColor;
