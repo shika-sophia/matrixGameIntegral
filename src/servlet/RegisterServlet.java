@@ -81,7 +81,7 @@ public class RegisterServlet extends HttpServlet {
 		String pass = request.getParameter("pass");
 
 		//Userクラスをインスタンス化
-		User user = new User(accountId, name, pass);
+		User user = new User(name, pass,accountId);
 
 		//セッションスコープを使用する
 		HttpSession session = request.getSession();
