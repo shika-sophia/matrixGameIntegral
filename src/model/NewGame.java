@@ -28,4 +28,25 @@ public class NewGame {
 
   }//newGameSetting()
 
+
+  public MatrixBeans newStoneAreaDB(MatrixBeans matrixDB) {
+      List<Integer> stoneAreaDB = new ArrayList<>(32);
+
+      //---- build ArrayList ----
+      for (int i = 0; i <= 25; i++) {
+          if (i == 0) {
+              stoneAreaDB.add(0, 9);
+          }
+
+          stoneAreaDB.add(i, 0);
+
+      }//for
+
+      //---- set to MatrixBeans ----
+      matrixDB.setStoneAreaDB(stoneAreaDB);
+
+    return matrixDB;
+
+  }//newStoneAreaDB()
+
 }//class
