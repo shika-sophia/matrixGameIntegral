@@ -36,7 +36,8 @@
 <tr><td style="text-align: left; vertical-align: top">
 <form action= "/matrixGameIntegral/StartServlet" method="post">
 <% if(saveDateTime != null) {%>
-<p><input type="submit" name="choiceGame" value="LoadGame">　Saveデータ：<%= name %>さん <%= saveDateTime %></p>
+<p><input type="submit" name="choiceGame" value="LoadGame">　Saveデータ：<%= name %>さん<br>
+　　　　　　　　<%= saveDateTime %></p>
 <% } %>
 <p><input type="submit" name="choiceGame" value="NewGame">　New Game</p>
 </form>
