@@ -43,7 +43,7 @@ public class RegisterServlet extends HttpServlet {
 
 			//RegisterLogicのインスタンス化
 			RegisterLogic rl = new RegisterLogic();
-			boolean existAccountId = rl.existRegister(user);
+			boolean existAccountId = (boolean) rl.existRegister(user);
 
 			String message = "";
 
@@ -58,6 +58,9 @@ public class RegisterServlet extends HttpServlet {
 				dis.forward(request, response);
 			} else {
 				message = "登録ＯＫ";
+				request.setAttribute("message", message);
+				request.setAttribute("existAccountId",existAccountId);
+
 				//insert文でＤＢに登録
 				RegisterDAO dao = new RegisterDAO();
 				dao.insertRegister(user);
