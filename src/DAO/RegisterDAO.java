@@ -13,35 +13,35 @@ import model.User;
 
 public class RegisterDAO {
 
-	private final String JDBC_URL = "jdbc:mysql://localhost:3306/puzzle?characterEncoding=utf-8&serverTimezone=JST";
-	private final String DB_USER = "root";
-	private final String DB_PASS = "root";
+    private final String JDBC_URL = "jdbc:mysql://localhost:3306/puzzle?characterEncoding=utf-8&serverTimezone=JST";
+    private final String DB_USER = "root";
+    private final String DB_PASS = "root";
 
-	public List<String> selectRegister(User user) {
-		Connection conn = null;
-		List<String> accountDB = new ArrayList<>();
+    public List<String> selectRegister(User user) {
+        Connection conn = null;
+        List<String> accountDB = new ArrayList<>();
 
-		try{
-			conn = DriverManager.getConnection(JDBC_URL,DB_USER,DB_PASS);
+        try{
+            conn = DriverManager.getConnection(JDBC_URL,DB_USER,DB_PASS);
 
-			//SELECT文の準備
-			String sql = "SELECT * FROM user WHERE name = ? AND accountId = ? AND pass = ?";
+            //SELECT文の準備
+            String sql = "SELECT * FROM user WHERE name = ? AND accountId = ? AND pass = ?";
 
-			//SQL文を送る
-			PreparedStatement pStmt = conn.prepareStatement(sql);
-			pStmt.setString(1,user.getName());
-			pStmt.setString(2,user.getAccountId());
-			pStmt.setString(3,user.getPass());
+            //SQL文を送る
+            PreparedStatement pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1,user.getName());
+            pStmt.setString(2,user.getAccountId());
+            pStmt.setString(3,user.getPass());
 
 
-			//SQL文を実行して結果を取得する
-			ResultSet rs = pStmt.executeQuery();
+            //SQL文を実行して結果を取得する
+            ResultSet rs = pStmt.executeQuery();
 
-			while(rs.next()) {
-			    accountDB.add(rs.getString("accountId"));
-			}
+            while(rs.next()) {
+                accountDB.add(rs.getString("accountId"));
+            }
 
-		} catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             return null;
 
@@ -57,48 +57,58 @@ public class RegisterDAO {
 
         return accountDB;
 
-	}//selectRegister
+    }//selectRegister
 
 
-	public boolean insertRegister(User user) {
+    public boolean insertRegister(User user) {
 
-		Connection conn = null;
+        Connection conn = null;
 
-		try {
-			conn =DriverManager.getConnection(JDBC_URL,DB_USER,DB_PASS);
+        try {
+            conn =DriverManager.getConnection(JDBC_URL,DB_USER,DB_PASS);
 
-			//SQL文の準備
-			String sql = "insert into user (name, accountId, pass) values(?,?,?)";
+            //SQL文の準備
+            String sql = "insert into user (name, accountId, pass, mail) values(?,?,?,?)";
 
-			//SQL文を送る
-			PreparedStatement pStmt = conn.prepareStatement(sql);
+            //SQL文を送る
+            PreparedStatement pStmt = conn.prepareStatement(sql);
 
-			//SQL文に情報を渡す
-			pStmt.setString(1, user.getName());
-			pStmt.setString(2, user.getAccountId());
-			pStmt.setString(3, user.getPass());
+            //SQL文に情報を渡す
+            pStmt.setString(1, user.getName());
+            pStmt.setString(2, user.getAccountId());
+            pStmt.setString(3, user.getPass());
+            pStmt.setString(4, user.getMail());
 
-			//SQL文を実行して結果を取得する
-			int rs = pStmt.executeUpdate();
+            //SQL文を実行して結果を取得する
+            int rs = pStmt.executeUpdate();
 
-			if(rs !=1) {
-				return false;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return false;
-		}finally {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-				return false;
-			}
-		}
+            if(rs !=1) {
+                return false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
 
-		return true;
+        return true;
 
-	}//insertRegister()
-
+    }//insertRegister()
 
 }//class
+
+/*
+ select * from user;
++-------+-----------+--------+-------+----------+-------------+
+| name  | accountId | pass   | point | puzzleId | mail        |
++-------+-----------+--------+-------+----------+-------------+
+| 三上  | leader    | leader |     0 |        1 | leader@demo |
+| shika | shika     | shika  |     0 |        2 | shika@demo  |
++-------+-----------+--------+-------+----------+-------------+
+*/
