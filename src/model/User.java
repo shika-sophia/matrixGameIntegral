@@ -4,22 +4,38 @@ import java.io.Serializable;
 
 public class User implements Serializable{
 
+    //------ field parameters in User(Beans) Class ------
     private String name;
     private String pass;
     private String accountId;
     private int puzzleId;
     private int point;
+    private String mail;
 
+
+    //====== constracter for general ======
     public User() {}
 
+
+    //======= constracter for LoginServlet =======
     public User(String name,String pass,String accountId) {
 
         this.name=name;
         this.pass=pass;
         this.accountId=accountId;
+    }
+
+    //====== constracter for RegisterServlet ======
+    public User(String name,String pass,String accountId, String mail) {
+
+        this.name=name;
+        this.pass=pass;
+        this.accountId=accountId;
+        this.mail = mail;
 
     }
 
+    //======= getter and setter section ======
     public String getName() {
         return name;
     }
@@ -59,5 +75,13 @@ public class User implements Serializable{
     public void setPoint(int point) {
         this.point = point;
     }
+
+	public String getMail() {
+		return mail;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
 
 }//class
