@@ -16,88 +16,96 @@ import model.User;
 
 @WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
 
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException,
-	IOException {
+    protected void doGet(HttpServletRequest request,HttpServletResponse response)
+      throws ServletException, IOException {
 
-		//index.jspのactionリクエストパラメータを取得する
-		String action = request.getParameter("action");
+        //index.jspのactionリクエストパラメータを取得する
+        request.setCharacterEncoding("UTF-8");
+        String action = request.getParameter("action");
 
-		if (action == null) {
+        if (action == null) {
             String message = "";
             request.setAttribute("message", message);
 
-			//register.jspへフォワード
-			String path = "/register.jsp";
-			RequestDispatcher dis = request.getRequestDispatcher(path);
-			dis.forward(request, response);
+            User user = new User();
+            user.setName("");
+            user.setPass("");
+            user.setAccountId("");
 
-		}else if(action.equals("done")) {
+            HttpSession session =request.getSession();
+            session.setAttribute("user", user);
 
-			//セッションスコープの情報を取得する
-			HttpSession session = request.getSession();
-			User user =(User) session.getAttribute("user");
+            //register.jspへフォワード
+            String path = "/register.jsp";
+            RequestDispatcher dis = request.getRequestDispatcher(path);
+            dis.forward(request, response);
 
-			//RegisterLogicのインスタンス化
-			RegisterLogic rl = new RegisterLogic();
-			boolean existAccountId = (boolean) rl.existRegister(user);
+        }else if(action.equals("done")) {
 
-			String message = "";
+            //セッションスコープの情報を取得する
+            HttpSession session = request.getSession();
+            User user =(User) session.getAttribute("user");
 
-			if (existAccountId) {
+            //RegisterLogicのインスタンス化
+            RegisterLogic rl = new RegisterLogic();
+            boolean existAccountId = (boolean) rl.existRegister(user);
 
-				message = "そのアカウントＩＤはすでに使われています";
-				request.setAttribute("message", message);
-				request.setAttribute("existAccountId",existAccountId);
+            String message = "";
 
-				String path = "/registerDone.jsp";
-				RequestDispatcher dis = request.getRequestDispatcher(path);
-				dis.forward(request, response);
-			} else {
-				message = "登録ＯＫ";
-				request.setAttribute("message", message);
-				request.setAttribute("existAccountId",existAccountId);
+            if (existAccountId) {
 
-				//insert文でＤＢに登録
-				RegisterDAO dao = new RegisterDAO();
-				dao.insertRegister(user);
+                message = "そのアカウントＩＤはすでに使われています";
+                request.setAttribute("message", message);
+                request.setAttribute("existAccountId",existAccountId);
 
-				//forward で結果を表示
-			    String path = "/registerDone.jsp";
-			    RequestDispatcher dis = request.getRequestDispatcher(path);
-				dis.forward(request, response);
-			}//if else
+                String path = "/registerDone.jsp";
+                RequestDispatcher dis = request.getRequestDispatcher(path);
+                dis.forward(request, response);
+            } else {
+                message = "登録ＯＫ";
+                request.setAttribute("message", message);
+                request.setAttribute("existAccountId",existAccountId);
 
-		}
-	}//doGet
+                //insert文でＤＢに登録
+                RegisterDAO dao = new RegisterDAO();
+                dao.insertRegister(user);
+
+                //forward で結果を表示
+                String path = "/registerDone.jsp";
+                RequestDispatcher dis = request.getRequestDispatcher(path);
+                dis.forward(request, response);
+            }//if else
+
+        }
+    }//doGet
 
 
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response)
-					throws ServletException, IOException
-	{
-		request.setCharacterEncoding("UTF-8");
+    protected void doPost(HttpServletRequest request,
+            HttpServletResponse response)
+                    throws ServletException, IOException
+    {
+        request.setCharacterEncoding("UTF-8");
 
-		String accountId = request.getParameter("accountId");
-		String name = request.getParameter("name");
-		String pass = request.getParameter("pass");
-		String mail = request.getParameter("mail");
+        String accountId = request.getParameter("accountId");
+        String name = request.getParameter("name");
+        String pass = request.getParameter("pass");
+        String mail = request.getParameter("mail");
 
-		//User(Beans)に入力更新 mail追加
-		User user = new User(name, pass, accountId, mail);
+        //User(Beans)に入力更新 mail追加
+        User user = new User(name, pass, accountId, mail);
 
-		//---- set seesion scope ----
-		HttpSession session = request.getSession();
-		session.setAttribute("user",user);
+        //---- set seesion scope ----
+        HttpSession session = request.getSession();
+        session.setAttribute("user",user);
 
-		//registerConfirm.jspへフォワード
-		String path = "/registerConfrim.jsp";
-		RequestDispatcher dis = request.getRequestDispatcher(path);
-		dis.forward(request, response);
+        //registerConfirm.jspへフォワード
+        String path = "/registerConfrim.jsp";
+        RequestDispatcher dis = request.getRequestDispatcher(path);
+        dis.forward(request, response);
 
-	}//doPost
+    }//doPost
 
 }
