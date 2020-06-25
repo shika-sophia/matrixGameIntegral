@@ -84,11 +84,12 @@ public class RegisterServlet extends HttpServlet {
 		String accountId = request.getParameter("accountId");
 		String name = request.getParameter("name");
 		String pass = request.getParameter("pass");
+		String mail = request.getParameter("mail");
 
-		//Userクラスをインスタンス化
-		User user = new User(name, pass,accountId);
+		//User(Beans)に入力更新 mail追加
+		User user = new User(name, pass, accountId, mail);
 
-		//セッションスコープを使用する
+		//---- set seesion scope ----
 		HttpSession session = request.getSession();
 		session.setAttribute("user",user);
 
