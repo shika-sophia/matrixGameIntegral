@@ -31,7 +31,8 @@ User user = (User) session.getAttribute("user");
 <tr><td>
   <p>ユーザー名　：<%= user.getName() %></p>
   <p>パスワード　：<%= user.getPass() %></p>
-  <p>アカウントID：<%= user.getAccountId() %></p>
+  <p>アカウントＩＤ：<%= user.getAccountId() %></p>
+  <p>メールアドレス：<%= user.getMail() %></p>
 <br>
 <br>
 <p>上記の内容で登録しますか？</p>

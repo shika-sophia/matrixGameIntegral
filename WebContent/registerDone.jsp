@@ -34,39 +34,40 @@
 <i>＊ 登録結果 ＊　　</i>
   </th></tr>
 <tr><td>
-	<!-- 新規登録成功した場合の出力 -->
-	<%
-		if (existAccountId == false) {
-	%>
-	<p>ようこそ<%= user.getName() %>さん</p>
-	<p><%= user.getPass() %></p>
-	<p><%= user.getAccountId() %></p>
+  <!-- 新規登録成功した場合の出力 -->
+  <%
+    if (existAccountId == false) {
+  %>
+  <p>ようこそ<%= user.getName() %>さん</p>
+  <p><%= user.getPass() %></p>
+  <p><%= user.getAccountId() %></p>
+  <p><%= user.getMail() %></p>
 <br>
-	<p>会員登録が完了しました！</p>
+  <p>会員登録が完了しました！</p>
 <br>
 
 <br>
-	<p>
-		<a href="/matrixGameIntegral/StartServlet">ゲーム選択画面へ</a>
-	</p>
-	<% } else { %>
-	<!-- 新規登録失敗した場合の出力 -->
-	<p>登録失敗</p>
+  <p>
+    <a href="/matrixGameIntegral/StartServlet">ゲーム選択画面へ</a>
+  </p>
+  <% } else { %>
+  <!-- 新規登録失敗した場合の出力 -->
+  <p>登録失敗</p>
 <p style="text-align: center; color: deeppink;" class = "message"><b><%= message %></b></p>
 <br>
-	<p>
-		<a href="/matrixGameIntegral/RegisterServlet">新規登録へ戻る</a>
-	</p>
-	<% } %>
+  <p>
+    <a href="/matrixGameIntegral/RegisterServlet">新規登録へ戻る</a>
+  </p>
+  <% } %>
 <br>
-	<!-- ログアウト処理 -->
-	<p>
-		<a href="/matrixGameIntegral/LogoutServlet">ログアウト</a>
-	</p>
+  <!-- ログアウト処理 -->
+  <p>
+    <a href="/matrixGameIntegral/LogoutServlet">ログアウト</a>
+  </p>
 <br>
-	<p>
-		<a href="/matrixGameIntegral">トップへ戻る</a>
-	</p>
+  <p>
+    <a href="/matrixGameIntegral">トップへ戻る</a>
+  </p>
 </td></tr></table>
 </div>
 </body>

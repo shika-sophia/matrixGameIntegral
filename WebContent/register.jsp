@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="model.User;" %>
+
+<%@ page import="model.User" %>
 <% User user = (User) session.getAttribute("user"); %>
 
 <% String name =""; %>
@@ -51,12 +52,12 @@
 </td></tr>
 <tr><td>
 <form action="/matrixGameIntegral/RegisterServlet" method="post">
-	<p>ユーザー名　：<input type="text" name="name" value="<%= name %>" required></p>
-	<p>パスワード　：<input type="password" name="pass" value="<%= pass %>" required></p>
-	<p>アカウントＩＤ：<input type="text" name="accountId" value="<%= accountId %>" required></p>
-	<p>メールアドレス：<input type="email" name="mail" required></p>
+  <p>ユーザー名　：<input type="text" name="name" value="<%= name %>" required></p>
+  <p>パスワード　：<input type="password" name="pass" value="<%= pass %>" required></p>
+  <p>アカウントＩＤ：<input type="text" name="accountId" value="<%= accountId %>" required></p>
+  <p>メールアドレス：<input type="email" name="mail" required></p>
 <br>
-	<p class="buttan"><input type="submit" value="確認">　　</p>
+  <p class="buttan"><input type="submit" value="確認">　　</p>
 </form>
 
 </td></tr></table>
