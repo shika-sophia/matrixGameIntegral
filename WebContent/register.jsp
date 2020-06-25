@@ -1,5 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="model.User;" %>
+<% User user = (User) session.getAttribute("user"); %>
+
+<% String name =""; %>
+<% String pass =""; %>
+<% String accountId =""; %>
+
+<% if(user != null){ %>
+<%   name = user.getName(); %>
+<%   pass = user.getPass(); %>
+<%   accountId = user.getAccountId(); %>
+<% } else { ; }%>
 
 <!DOCTYPE html>
 
@@ -31,13 +43,18 @@
 <table class="index">
 <tr>
   <th style="text-align: center; font-size: large;">
-<i>＊ 新規会員登録 ＊　　</i>
-  </th></tr>
+<i>＊ 新規会員登録(仮登録) ＊　</i>
+  </th>
+</tr>
+<tr><td>
+  <p class="message">本登録のためメールを送信します。</p>
+</td></tr>
 <tr><td>
 <form action="/matrixGameIntegral/RegisterServlet" method="post">
-	<p>ユーザー名　：<input type="text" name="name" required></p>
-	<p>パスワード　：<input type="password" name="pass" required></p>
-	<p>アカウントID：<input type="text" name="accountId" required></p>
+	<p>ユーザー名　：<input type="text" name="name" value="<%= name %>" required></p>
+	<p>パスワード　：<input type="password" name="pass" value="<%= pass %>" required></p>
+	<p>アカウントＩＤ：<input type="text" name="accountId" value="<%= accountId %>" required></p>
+	<p>メールアドレス：<input type="email" name="mail" required></p>
 <br>
 	<p class="buttan"><input type="submit" value="確認">　　</p>
 </form>
