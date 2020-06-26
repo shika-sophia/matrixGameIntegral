@@ -22,7 +22,7 @@
 <% List<String> stoneSelectColor = (List<String>) application.getAttribute("stoneSelectColor"); %>
 
 <% String message = (String) request.getAttribute("message"); %>
-<% //boolean flagYesNo = (boolean) request.getAttribute("flagYesNo"); %>
+<% String controle = (String) session.getAttribute("controle"); %>
 
 <% User user = (User) session.getAttribute("user"); %>
 
@@ -82,7 +82,18 @@
 <table class="message" border="0">
 <tr><td id="message">
 <p style="color: hotpink; vertical-align: top"><b><i>＊ Message ＊</i></b></p>
-<form action="/matrixGameIntegral/SaveServlet" method="post">
+
+<!-- form type election -->
+<% if(controle.equals("Save")){ %>
+    <form action="/matrixGameIntegral/SaveServlet" method="post">
+<% } else if (controle.equals("Reset")){%>
+    <form action="/matrixGameIntegral/ResetServlet" method="post">
+<% } else if (controle.equals("Reverse")){%>
+    <form action="/matrixGameIntegral/ReveseServlet" method="post">
+<% } else if (controle.equals("Logout")){%>
+    <form action="/matrixGameIntegral/LogoutServlet" method="post">
+<% } %>
+
 <% if (message != null && !(message.equals(""))) {%>
   <p><%= message %></p>
 <% //} else if (flagYesNo == true){ %>
