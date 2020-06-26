@@ -78,6 +78,7 @@ public class StartServlet extends HttpServlet {
       List<Integer> stoneAreaDB = matrixDB.getStoneAreaDB();
 
       String stoneSelect = "";
+      String controle = "";
 
       // ---- call paint method ----
       ColorLogic colorLogic = new ColorLogic();
@@ -87,6 +88,7 @@ public class StartServlet extends HttpServlet {
 
       // ---- set session / applicaton scope ----
       session.setAttribute("matrixDB", matrixDB);
+      session.setAttribute("controle", controle);
 
       ServletContext application = request.getServletContext();
       application.setAttribute("color", color);

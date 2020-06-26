@@ -97,6 +97,7 @@ public class ColorServlet extends HttpServlet {
 
         //---- request/ session / application scope ----
         String message = "";
+        String controle = "";
         boolean flagYesNo = false;
         request.setAttribute("message", message);
         request.setAttribute("flagYesNo", flagYesNo);
@@ -104,6 +105,7 @@ public class ColorServlet extends HttpServlet {
         //HttpSession session = request.getSession();
         //session.setAttribute("user", user);
         session.setAttribute("matrixDB", matrixDB);
+        session.setAttribute("controle", controle);
 
         ServletContext application = request.getServletContext();
         application.setAttribute("color", color);
