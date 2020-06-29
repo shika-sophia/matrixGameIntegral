@@ -25,7 +25,7 @@ public class LoginDAO {
 		conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS);
 
 		//セレクト文の準備
-		String sql = "SELECT puzzleId,name,accountId,pass,point FROM user WHERE NAME=? AND PASS=?";
+		String sql = "SELECT puzzleId,name,accountId,pass,point,mail FROM user WHERE NAME=? AND PASS=?";
 
 		//SQL文を送る
 		PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -41,9 +41,11 @@ public class LoginDAO {
 		while (rs.next()) {
 			int puzzleId = rs.getInt("puzzleId");
 			int point = rs.getInt("point");
+			String mail = rs.getString("mail");
 
 			user.setPuzzleId(puzzleId);
             user.setPoint(point);
+            user.setMail(mail);
 
             existRegister = true;
 
