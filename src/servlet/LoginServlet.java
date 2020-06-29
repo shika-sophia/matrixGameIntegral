@@ -33,20 +33,19 @@ public class LoginServlet extends HttpServlet {
 		String pass=request.getParameter("pass");
 		String accountId =request.getParameter("accountId");
 
-		//Userインスタンスの呼び出し
+		//Userインスタンスと値の入力
 		User user=new User(name,pass,accountId);
 
-		//LoginLogicmodelで合致を確認
+		//LoginLogicで すでに登録があるかを確認
 		LoginLogic loginLogic=new LoginLogic();
         boolean isLogin = loginLogic.execute(user);
 
-		//ログインに成功した場合の処理
-		if(isLogin) {
-			//ユーザー情報をセッションスコープに保存
-			HttpSession session = request.getSession();
-			session.setAttribute("user", user);
-		}
-		//loginResult.jspへフォワード
+        //---- set request / session scope ----
+        request.setAttribute("isLogin", isLogin);
+
+		HttpSession session = request.getSession();
+		session.setAttribute("user", user);
+
 		String path = "/loginResult.jsp";
 		RequestDispatcher dis = request.getRequestDispatcher(path);
 		dis.forward(request, response);
