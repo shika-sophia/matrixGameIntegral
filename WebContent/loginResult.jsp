@@ -3,6 +3,7 @@
 
 <%@ page import="model.User" %>
 <% User user = (User) session.getAttribute("user"); %>
+<% boolean isLogin = (boolean) request.getAttribute("isLogin");%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +30,7 @@
 <tr><td>
   <!-- ログイン成功した場合の出力 -->
   <%
-  if (user != null) {
+  if (isLogin) {
   %>
   <p>ログイン成功</p>
   <p>ようこそ<%= user.getName() %>さん</p>
@@ -51,7 +52,6 @@
   </p>
   <% } %>
 
-  <!-- ログアウト処理 -->
   <p>
     <a href="/matrixGameIntegral/LogoutServlet">ログアウト</a>
   </p>
