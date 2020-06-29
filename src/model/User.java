@@ -28,9 +28,9 @@ public class User implements Serializable{
     //====== constracter for RegisterServlet ======
     public User(String name,String pass,String accountId, String mail) {
 
-        this.name=name;
-        this.pass=pass;
-        this.accountId=accountId;
+        this.name = name;
+        this.pass = pass;
+        this.accountId = accountId;
         this.mail = mail;
 
     }
